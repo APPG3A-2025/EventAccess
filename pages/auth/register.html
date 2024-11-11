@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventAccess - Inscription</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+    <!-- Ajoutez juste après l'ouverture du body -->
+    <div class="notification" id="notification">
+        <span class="notification-message"></span>
+    </div>
+
+    <!-- Navigation identique -->
+    <nav class="vintage-nav">
+        <div class="nav-brand">EventAccess</div>
+        <div class="nav-links">
+            <a href="../../index.html">Découvrir</a>
+            <a href="../../pages/create.html">Organiser</a>
+            <a href="../../pages/list.html">Contact</a>
+        </div>
+        <div class="nav-auth">
+            <a href="../auth/login.html" class="auth-button login">Connexion</a>
+            <a href="../auth/register.html" class="auth-button signup active">Inscription</a>
+        </div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="menu-overlay"></div>
+
+    <section class="auth-section">
+        <div class="auth-container register-container">
+            <h1>Créer un compte</h1>
+            
+            <!-- Barre de progression -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <div class="step-indicators">
+                    <div class="step active" data-step="1">Email</div>
+                    <div class="step" data-step="2">Profil</div>
+                    <div class="step" data-step="3">Sécurité</div>
+                    <div class="step" data-step="4">Confirmation</div>
+                </div>
+            </div>
+
+            <!-- Formulaire avec étapes -->
+            <div class="registration-form">
+                <div class="form-steps">
+                    <!-- Étape 1: Email -->
+                    <div class="step-content active" data-step="1">
+                        <h2>Commençons par votre email</h2>
+                        
+                        <!-- Ajout du choix du type de compte -->
+                        <div class="form-group">
+                            <label>Type de compte</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="account-type" value="participant" required checked>
+                                    <span>Participant</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="account-type" value="organizer" required>
+                                    <span>Organisateur</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                required 
+                                pattern="[^@\s]+@[^@\s]+\.[^@\s]+" 
+                                title="Veuillez entrer une adresse email valide (exemple@domaine.com)"
+                            >
+                        </div>
+                        <button type="button" class="next-step">Continuer</button>
+                    </div>
+
+                    <!-- Étape 2: Informations personnelles -->
+                    <div class="step-content" data-step="2">
+                        <h2>Vos informations</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="civilite">Civilité</label>
+                                <select id="civilite" name="civilite" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="m">M.</option>
+                                    <option value="mme">Mme.</option>
+                                    <option value="mx">Mx.</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstname">Prénom</label>
+                                <input type="text" id="firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Nom</label>
+                                <input type="text" id="lastname" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="birthdate">Date de naissance</label>
+                                <input type="date" id="birthdate" required>
+                            </div>
+                            <div class="form-group phone-group">
+                                <label for="phone">Numéro de téléphone</label>
+                                <div class="phone-input-container">
+                                    <div class="phone-prefix">
+                                        <span>🇫🇷</span>
+                                        <span>+33</span>
+                                    </div>
+                                    <input 
+                                        type="tel" 
+                                        id="phone" 
+                                        maxlength="14" 
+                                        placeholder="6 12 34 56 78"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal">Code postal</label>
+                            <input type="text" id="postal" pattern="[0-9]{5}" maxlength="5" placeholder="75001" required>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="prev-step">Retour</button>
+                            <button type="button" class="next-step">Continuer</button>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3: Mot de passe -->
+                    <div class="step-content" data-step="3">
+                        <h2>Sécurisez votre compte</h2>
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <div class="password-input">
+                                <input type="password" id="password" required>
+                                <button type="button" class="toggle-password">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar"></div>
+                                <span class="strength-text">Force du mot de passe</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmer le mot de passe</label>
+                            <input type="password" id="confirm-password" required>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="prev-step">Retour</button>
+                            <button type="button" class="next-step">Continuer</button>
+                        </div>
+                    </div>
+
+                    <!-- Étape 4: Confirmation -->
+                    <div class="step-content" data-step="4">
+                        <h2>Dernière étape</h2>
+                        <div class="form-group">
+                            <label class="terms">
+                                <input type="checkbox" required>
+                                <span>J'accepte les <a href="terms.html">conditions d'utilisation</a></span>
+                            </label>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="prev-step">Retour</button>
+                            <button type="submit" class="submit-btn">Créer mon compte</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À propos</h3>
+                <p>EventAccess est votre plateforme de gestion d'événements</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@eventaccess.com</p>
+                <p>Tél: +33 1 23 45 67 89</p>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Mentions légales</h3>
+                <div class="legal-links">
+                    <a href="terms.html">CGU</a>
+                    <a href="terms.html#cgv">CGV</a>
+                    <a href="terms.html#privacy">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 EventAccess - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/auth/register.js"></script>
+</body>
+</html> 

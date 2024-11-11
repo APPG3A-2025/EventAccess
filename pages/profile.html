@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventAccess - Mon Profil</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span class="notification-message"></span>
+    </div>
+
+    <nav class="vintage-nav">
+        <div class="nav-brand">EventAccess</div>
+        <div class="nav-links">
+            <a href="../index.html">Découvrir</a>
+            <a href="create.html">Organiser</a>
+            <a href="list.html">Contact</a>
+        </div>
+        <div class="nav-auth">
+            <a href="auth/login.html" class="auth-button login">Connexion</a>
+            <a href="auth/register.html" class="auth-button signup">Inscription</a>
+        </div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="menu-overlay"></div>
+
+    <section class="profile-section">
+        <div class="profile-container">
+            <h1>Mon Profil</h1>
+
+            <!-- Informations personnelles -->
+            <div class="profile-block">
+                <h2>Informations personnelles</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Civilité</label>
+                        <p data-field="civilite">M.</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Prénom</label>
+                        <p data-field="firstname">John</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Nom</label>
+                        <p data-field="lastname">Doe</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Date de naissance</label>
+                        <p data-field="birthdate" data-raw-date="1990-01-01">01/01/1990</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Téléphone</label>
+                        <p data-field="phone">+33 6 12 34 56 78</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Code postal</label>
+                        <p data-field="postal">75001</p>
+                    </div>
+                </div>
+                <button class="edit-button" data-modal="edit-info">Modifier mes informations</button>
+            </div>
+
+            <!-- Email -->
+            <div class="profile-block">
+                <h2>Email</h2>
+                <p class="current-email">john.doe@example.com</p>
+                <button class="edit-button" data-modal="edit-email">Modifier mon email</button>
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="profile-block">
+                <h2>Mot de passe</h2>
+                <button class="edit-button" data-modal="edit-password">Modifier mon mot de passe</button>
+            </div>
+
+            <!-- Suppression du compte -->
+            <div class="profile-block danger-zone">
+                <h2>Supprimer mon compte</h2>
+                <p class="warning-text">Attention : cette action est irréversible</p>
+                <button class="delete-button" data-modal="delete-account">Supprimer mon compte</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Modal Modification Email -->
+    <div class="modal" id="edit-email">
+        <div class="modal-content">
+            <h2>Modifier mon email</h2>
+            <form id="email-form">
+                <div class="form-group">
+                    <label for="current-email">Email actuel</label>
+                    <input type="email" id="current-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-email">Nouvel email</label>
+                    <input type="email" id="new-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-email">Confirmer le nouvel email</label>
+                    <input type="email" id="confirm-email" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-button">Annuler</button>
+                    <button type="submit" class="submit-button">Confirmer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Modification Mot de passe -->
+    <div class="modal" id="edit-password">
+        <div class="modal-content">
+            <h2>Modifier mon mot de passe</h2>
+            <form id="password-form">
+                <div class="form-group">
+                    <label for="current-password">Mot de passe actuel</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Nouveau mot de passe</label>
+                    <input type="password" id="new-password" required>
+                    <div class="password-strength">
+                        <div class="strength-bar"></div>
+                        <span class="strength-text">Force du mot de passe</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmer le nouveau mot de passe</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-button">Annuler</button>
+                    <button type="submit" class="submit-button">Confirmer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Suppression Compte -->
+    <div class="modal" id="delete-account">
+        <div class="modal-content">
+            <h2>Supprimer mon compte</h2>
+            <p class="warning-text">Cette action est irréversible. Toutes vos données seront définitivement supprimées.</p>
+            <form id="delete-form">
+                <div class="form-group">
+                    <label for="delete-password">Entrez votre mot de passe pour confirmer</label>
+                    <input type="password" id="delete-password" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-button">Annuler</button>
+                    <button type="submit" class="delete-button">Supprimer définitivement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Ajoutez cette modale après les autres modales -->
+    <div class="modal" id="edit-info">
+        <div class="modal-content">
+            <h2>Modifier mes informations</h2>
+            <form id="info-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-civilite">Civilité</label>
+                        <select id="edit-civilite" name="civilite" required>
+                            <option value="m">M.</option>
+                            <option value="mme">Mme.</option>
+                            <option value="mx">Mx.</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-firstname">Prénom</label>
+                        <input type="text" id="edit-firstname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-lastname">Nom</label>
+                        <input type="text" id="edit-lastname" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-birthdate">Date de naissance</label>
+                        <input type="date" id="edit-birthdate" required>
+                    </div>
+                    <div class="form-group phone-group">
+                        <label for="edit-phone">Numéro de téléphone</label>
+                        <div class="phone-input-container">
+                            <div class="phone-prefix">
+                                <span>🇫🇷</span>
+                                <span>+33</span>
+                            </div>
+                            <input 
+                                type="tel" 
+                                id="edit-phone" 
+                                maxlength="14" 
+                                required
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit-postal">Code postal</label>
+                    <input type="text" id="edit-postal" pattern="[0-9]{5}" maxlength="5" placeholder="75001" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-button">Annuler</button>
+                    <button type="submit" class="submit-button">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À propos</h3>
+                <p>EventAccess est votre plateforme de gestion d'événements</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@eventaccess.com</p>
+                <p>Tél: +33 1 23 45 67 89</p>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Mentions légales</h3>
+                <div class="legal-links">
+                    <a href="legal/terms.html">CGU</a>
+                    <a href="legal/cgv.html">CGV</a>
+                    <a href="legal/privacy.html">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 EventAccess - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script type="module" src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/profile.js"></script>
+</body>
+</html> 

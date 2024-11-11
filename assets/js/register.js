@@ -1,0 +1,3 @@
+import { validatePassword, calculatePasswordStrength, validatePhoneNumber, formatPhoneNumber } from './utils/validation.js';
+
+// Garder le reste du code... 
