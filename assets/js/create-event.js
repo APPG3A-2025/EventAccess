@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialisation de l'autocomplétion des villes
+    const cityInput = document.getElementById('event-city');
+    const citySuggestions = document.getElementById('city-suggestions');
+    
+    if (cityInput && citySuggestions) {
+        new CityAutocomplete(cityInput, citySuggestions);
+    }
+
     // Validation du code postal
     const postalInput = document.getElementById('event-postal');
     
