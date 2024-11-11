@@ -2296,3 +2296,43 @@ select option {
     align-items: center;
     justify-content: center;
 }
+
+/* Styles pour la page de création d'événement */
+.create-event-section {
+    padding: 6rem 5% 2rem; /* Augmenté le padding-top pour la navbar */
+    min-height: calc(100vh - 60px);
+    background: #f8f9fa;
+}
+
+.create-event-section .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.create-event-section h1 {
+    color: var(--text-color);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.create-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Ajustement responsive */
+@media (max-width: 768px) {
+    .create-event-section {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .create-event-section .container {
+        padding: 1.5rem;
+    }
+}
