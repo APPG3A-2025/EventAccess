@@ -2145,201 +2145,33 @@ select option {
 /* Styles pour les contrôles de recherche */
 .search-controls {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
+    position: relative;
 }
 
 .search-bar {
     flex: 1;
+    position: relative;
 }
 
-.sort-control {
+.search-bar form {
     display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    min-width: 200px;
-    height: 45px; /* Augmentation de la hauteur */
-}
-
-.sort-control label {
-    color: var(--text-color);
-    font-size: 1rem; /* Légèrement plus grand */
-    white-space: nowrap;
-    font-weight: 500; /* Un peu plus gras */
-}
-
-.sort-select {
-    padding: 0.8rem 1rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: white;
-    color: var(--text-color);
-    cursor: pointer;
-    font-size: 0.95rem; /* Légèrement plus grand */
-    transition: all 0.3s ease;
-    width: 100%;
-    height: 100%; /* Prend toute la hauteur du conteneur */
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 0.8rem center;
-    background-size: 1em;
-}
-
-.sort-select:hover {
-    border-color: var(--secondary-color);
-}
-
-.sort-select:focus {
-    outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 2px rgba(139, 21, 56, 0.1);
-}
-
-@media (max-width: 768px) {
-    .search-controls {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .sort-control {
-        width: 100%;
-    }
-
-    .sort-select {
-        width: 100%;
-    }
-}
-
-/* Styles pour la page de création d'événement */
-.create-event-section {
-    margin-top: 80px; /* Espace pour la navbar fixe */
-    padding: 2rem 5%;
-}
-
-.create-event-section .container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.create-event-section h1 {
-    margin-bottom: 2rem;
-    color: var(--text-color);
-    text-align: center;
-}
-
-.create-event-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.form-row {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.form-row .form-group {
-    flex: 1;
-    margin-bottom: 0;
-}
-
-.location-section {
-    background: var(--gray-light);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-}
-
-.location-section h3 {
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
-}
-
-.submit-button {
-    background: var(--secondary-color);
-    color: white;
-    padding: 1rem 2rem;
-}
-
-/* Style pour l'upload d'images */
-.form-group input[type="file"] {
-    display: none; /* Cache l'input file par défaut */
-}
-
-.form-group label[for="event-images"] {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--secondary-color);
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 1rem;
-}
-
-.form-group label[for="event-images"]:hover {
-    background-color: #a01841;
-}
-
-.image-preview {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
+    align-items: flex-start;
 }
 
-.image-preview img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #e0e0e0;
+/* Ajuster le conteneur des suggestions */
+.city-search-container {
+    position: relative;
+    flex: 1;
 }
 
-/* Style pour le texte d'indication */
-.form-group label[for="event-images"]::after {
-    content: "Choisir des images";
-    margin-left: 0.5rem;
-}
-
-/* Style pour l'icône d'upload (optionnel) */
-.form-group label[for="event-images"]::before {
-    content: "📸";
-    margin-right: 0.5rem;
-}
-
-/* Style pour les suggestions de villes */
+/* Modifier le positionnement des suggestions */
 .city-suggestions {
-    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -2351,33 +2183,48 @@ select option {
     z-index: 1000;
     max-height: 300px;
     overflow-y: auto;
-}
-
-.city-suggestions.active {
-    display: block;
+    border: 1px solid #e0e0e0; /* Ajoute une bordure autour de la liste */
 }
 
 .city-suggestion {
     padding: 0.8rem 1.2rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #e0e0e0; /* Ajoute une bordure entre chaque suggestion */
+    display: flex; /* Ajouté */
+    justify-content: space-between; /* Ajouté */
+    align-items: center; /* Ajouté */
+    gap: 1rem; /* Ajoute un espacement entre les spans */
+}
+
+.city-suggestion:last-child {
+    border-bottom: none; /* Retire la bordure du dernier élément */
 }
 
 .city-suggestion:hover {
-    background-color: #f5f5f5;
+    background-color: transparent; /* Retire le fond gris au hover */
 }
 
-.city-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-}
-
+/* Style pour le nom et le code postal de la ville */
 .city-name {
     font-weight: 500;
+    color: var(--text-color);
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 4px 12px;
 }
 
 .city-postal {
     font-size: 0.9rem;
     color: #666;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 4px 12px;
+}
+
+/* Effet hover sur les spans uniquement */
+.city-suggestion:hover .city-name,
+.city-suggestion:hover .city-postal {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color); /* Optionnel : change aussi la couleur du texte */
 }
