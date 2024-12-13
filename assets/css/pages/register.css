@@ -1,0 +1,635 @@
+/* Styles pour le formulaire d'inscription par étapes */
+.progress-container {
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.progress {
+    position: absolute;
+    height: 100%;
+    background: var(--secondary-color);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.step-indicators {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.step {
+    font-size: 0.9rem;
+    color: #757575;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.step.active {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.step.completed {
+    color: var(--secondary-color);
+}
+
+.form-steps {
+    position: relative;
+    overflow: hidden;
+    min-height: 0; /* Empêche la hauteur minimale */
+}
+
+.step-content {
+    display: none;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.3s ease;
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.step-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+    height: auto;
+    overflow: visible;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.prev-step {
+    background: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.next-step, .submit-btn {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.prev-step, .next-step, .submit-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Modification des styles pour les boutons d'étapes */
+.step-content[data-step="1"] {
+    position: relative;
+}
+
+.step-content[data-step="1"] .next-step {
+    float: right;
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.step-content[data-step="1"] .next-step:hover {
+    background: #a01841;
+    transform: translateY(-2px);
+}
+
+/* Ajout d'un clearfix pour gérer le float */
+.step-content[data-step="1"]::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Modification des styles pour tous les boutons d'étapes */
+.step-content .next-step {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.step-content .next-step:hover {
+    background: #a01841;
+    transform: translateY(-2px);
+}
+
+/* Style spécifique pour le bouton de la première étape */
+.step-content[data-step="1"] .next-step {
+    float: right;
+    margin-top: 20px;
+}
+
+/* Style pour les groupes de boutons dans les autres étapes */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+/* Style pour le bouton retour */
+.prev-step {
+    background: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Ajustement des espacements dans l'étape Profil */
+.step-content[data-step="2"] .form-group {
+    margin-bottom: 1.5rem; /* Espace entre les groupes de champs */
+}
+
+.step-content[data-step="2"] h2 {
+    margin-bottom: 2rem; /* Espace sous le titre */
+}
+
+.step-content[data-step="2"] label {
+    margin-bottom: 0.3rem; /* Réduit l'espace entre le label et l'input */
+    display: block; /* Assure que le label est sur sa propre ligne */
+}
+
+.step-content[data-step="2"] input {
+    margin-bottom: 0; /* Supprime l'espace sous les inputs */
+}
+
+/* Ajustement du groupe de boutons */
+.step-content[data-step="2"] .button-group {
+    margin-top: 2rem; /* Espace avant les boutons */
+}
+
+/* Styles pour la notification */
+.notification {
+    position: fixed;
+    top: 80px; /* Augmenté de 60px à 80px pour laisser plus d'espace */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff3333;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    z-index: 1100;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 200px;
+    max-width: 80%;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.notification.show {
+    opacity: 1;
+    visibility: visible;
+    animation: slideDownNotif 0.3s forwards, slideUpNotif 0.3s forwards 4.7s;
+}
+
+/* Animations pour la notification */
+@keyframes slideDownNotif {
+    from {
+        top: 60px; /* Position de dpart ajustée */
+        opacity: 0;
+    }
+    to {
+        top: 80px; /* Position finale ajustée */
+        opacity: 1;
+    }
+}
+
+@keyframes slideUpNotif {
+    from {
+        top: 80px; /* Position de départ ajustée */
+        opacity: 1;
+    }
+    to {
+        top: 60px; /* Position finale ajustée */
+        opacity: 0;
+    }
+}
+/* Styles pour la barre de force du mot de passe */
+.strength-bar {
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.strength-bar::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0;
+    transition: all 0.3s ease;
+}
+
+.strength-bar.weak::before {
+    width: 25%;
+    background: #ff4444;
+}
+
+.strength-bar.medium::before {
+    width: 50%;
+    background: #ffbb33;
+}
+
+.strength-bar.strong::before {
+    width: 75%;
+    background: #00C851;
+}
+
+.strength-bar.very-strong::before {
+    width: 100%;
+    background: #007E33;
+}
+
+.strength-text {
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    transition: color 0.3s ease;
+}
+/* Ajoutez ces styles pour les messages d'erreur */
+.password-error {
+    color: #ff4444;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+/* Ajustement des espacements dans l'étape Sécurité */
+.step-content[data-step="3"] .password-strength {
+    margin-bottom: 1.5rem; /* Ajoute un espace de 1.5rem (environ 1cm) */
+}
+
+.step-content[data-step="3"] .form-group {
+    margin-bottom: 1rem; /* Espacement standard entre les groupes */
+}
+
+/* Ajustement spécifique pour le groupe de confirmation */
+.step-content[data-step="3"] .form-group:last-of-type {
+    margin-top: 0.5rem; /* Petit espace supplémentaire en haut */
+}
+
+/* Style pour la checkbox et le texte dans l'étape 4 */
+.step-content[data-step="4"] .terms {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step-content[data-step="4"] .terms input[type="checkbox"] {
+    margin: 0;
+    width: 12px; /* Taille fixe */
+    height: 12px; /* Taille fixe */
+    min-width: 12px; /* Empêche l'expansion */
+    min-height: 12px; /* Empêche l'expansion */
+    flex: none; /* Empêche la flexbox d'affecter la taille */
+}
+
+.step-content[data-step="4"] .terms span {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.step-content[data-step="4"] .terms a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.step-content[data-step="4"] .terms a:hover {
+    text-decoration: underline;
+}
+
+/* Style pour tous les boutons dans l'inscription */
+.step-content .next-step,
+.step-content .prev-step,
+.step-content .submit-btn {
+    font-size: 1rem; /* Taille de police uniforme */
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Style spécifique pour le bouton Continuer */
+.step-content .next-step {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+}
+
+/* Style spécifique pour le bouton Retour */
+.step-content .prev-step {
+    background: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+/* Style pour le bouton de soumission */
+.step-content .submit-btn {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+}
+
+/* Style pour le bouton de soumission dans l'étape 4 */
+.step-content[data-step="4"] .submit-btn {
+    width: auto; /* Au lieu de 100% */
+    padding: 0.8rem 1.5rem; /* Même padding que les autres boutons */
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Style pour le groupe de boutons dans l'étape 4 */
+.step-content[data-step="4"] .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    align-items: center; /* Pour aligner verticalement les boutons */
+}
+
+/* Style pour l'étape 2 (Profil) - Mise en colonnes */
+.step-content[data-step="2"] {
+    display: none;
+}
+
+.step-content[data-step="2"].active {
+    display: block;
+}
+
+/* Conteneur pour les groupes de champs */
+.step-content[data-step="2"] .form-fields {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Première ligne : Prénom et Nom */
+.step-content[data-step="2"] .name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Deuxième ligne : Date de naissance et Téléphone */
+.step-content[data-step="2"] .contact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Troisième ligne : Adresse (pleine largeur) */
+.step-content[data-step="2"] .address-row {
+    grid-column: 1 / -1;
+}
+
+/* Le groupe de boutons doit prendre toute la largeur */
+.step-content[data-step="2"] .button-group {
+    margin-top: 1.5rem;
+}
+
+/* Ajustement responsive */
+@media (max-width: 768px) {
+    .step-content[data-step="2"] .name-row,
+    .step-content[data-step="2"] .contact-row {
+        grid-template-columns: 1fr; /* Une seule colonne en mobile */
+    }
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 0; /* Important pour permettre aux éléments de rétrécir */
+}
+
+/* Ajustement responsive */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .form-row .form-group {
+        margin-bottom: 0;
+    }
+}
+
+/* Style pour le champ téléphone */
+.phone-group {
+    position: relative;
+}
+
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--background-color);
+    width: 100%; /* Assure que le conteneur prend toute la largeur */
+}
+
+.phone-prefix {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+    background: var(--background-color);
+    border-right: 2px solid #e0e0e0;
+    white-space: nowrap; /* Empêche le préfixe de se wrap */
+}
+
+.phone-prefix span {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.phone-input-container input {
+    border: none;
+    border-radius: 0;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    min-width: 150px; /* Largeur minimale pour le champ */
+    font-size: 1rem;
+}
+
+.phone-input-container input:focus {
+    outline: none;
+}
+
+.phone-input-container:focus-within {
+    border-color: var(--secondary-color);
+}
+
+/* Ajustement des espacements pour le formulaire en responsive */
+@media (max-width: 768px) {
+    .step-content {
+        max-height: none; /* Supprime la hauteur maximale en mobile */
+        overflow-y: visible; /* Permet le défilement naturel */
+        padding-bottom: 2rem; /* Ajoute de l'espace en bas */
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    /* Ajustement spécifique pour le champ d'adresse */
+    .form-group:last-child {
+        margin-bottom: 2rem; /* Plus d'espace avant les boutons */
+    }
+
+    /* Ajustement des boutons en bas */
+    .button-group {
+        position: relative;
+        margin-top: 2rem;
+        padding-top: 1rem;
+    }
+}
+
+/* Ajoutez ces styles pour la checkbox en erreur */
+.step-content[data-step="4"] .terms input[type="checkbox"].error {
+    border-color: #ff3333;
+    background-color: rgba(255, 51, 51, 0.1);
+}
+
+.step-content[data-step="4"] .terms.error span {
+    color: #ff3333;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.radio-label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px; /* Retour à 14px */
+    height: 14px; /* Retour à 14px */
+    border: 2px solid var(--secondary-color);
+    border-radius: 50%;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.radio-label input[type="radio"]:checked {
+    background: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.radio-label input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 4px; /* Retour à 4px */
+    height: 4px; /* Retour à 4px */
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.radio-label span { 
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    user-select: none;
+    margin-left: 0.2rem;
+    line-height: 14px;
+}
+
+.radio-label:hover input[type="radio"] {
+    border-color: #a01841;
+}
+select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none; /* Supprime le style par défaut */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+select:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(139, 21, 56, 0.1);
+}
+
+select:hover {
+    border-color: var(--secondary-color);
+}
+
+/* Style pour l'option disabled */
+select option[disabled] {
+    color: #999;
+}
+
+/* Style pour les options */
+select option {
+    padding: 0.8rem;
+}
+
