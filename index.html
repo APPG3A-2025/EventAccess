@@ -1,140 +1,169 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventAccess - Accueil</title>
-    <link rel="shortcut icon" href="images/LOGO EVENT ACCESS.png" class="shortcut_icon">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/pages/index.css">
-</head>
-<body>
-    <nav class="vintage-nav">
-        <div class="nav-brand">EventAccess</div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Découvrir</a>
-            <a href="pages/create.html">Organiser</a>
-            <a href="pages/list.html">Contact</a>
-        </div>
-        <div class="nav-auth">
-            <a href="pages/auth/login.html" class="auth-button login">Connexion</a>
-            <a href="pages/auth/register.html" class="auth-button signup">Inscription</a>
-        </div>
-        <div class="menu-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>EventAccess - Accueil</title>
+		<link
+			rel="shortcut icon"
+			href="images/LOGO EVENT ACCESS.png"
+			class="shortcut_icon"
+		/>
+		<link rel="stylesheet" href="assets/css/styles.css" />
+		<link rel="stylesheet" href="assets/css/pages/index.css" />
+	</head>
+	<body>
+		<nav class="vintage-nav">
+			<div class="nav-brand">EventAccess</div>
+			<div class="nav-links">
+				<a href="index.html" class="active">Découvrir</a>
+				<a href="pages/create.html">Organiser</a>
+				<a href="pages/faq.html">Contact</a>
+			</div>
+			<div class="nav-auth">
+				<a href="pages/auth/login.html" class="auth-button login">Connexion</a>
+				<a href="pages/auth/register.html" class="auth-button signup"
+					>Inscription</a
+				>
+			</div>
+			<div class="menu-icon">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</nav>
 
-    <div class="menu-overlay"></div>
+		<div class="menu-overlay"></div>
 
-    <section class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80');">
-        <div class="hero-content">
-            <h1>Découvrez nos événements</h1>
-            <p>Explorez les meilleurs événements à proximité de chez vous.
-            La modification des évènements n'est pas autorisée.
-            </p>
-            <div class="search-bar">
-                <form id="search-form" action="pages/search-results.html" method="GET">
-                    <div class="search-inputs">
-                        <div class="search-input-group">
-                            <input 
-                                type="text" 
-                                name="query" 
-                                placeholder="Concert, théâtre, festival..." 
-                                required
-                            >
-                        </div>
-                    </div>
-                    <button type="submit">Rechercher</button>
-                </form>
-            </div>
-        </div>
-    </section>
+		<section
+			class="hero-section"
+			style="
+				background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80');
+			"
+		>
+			<div class="hero-content">
+				<h1>Découvrez nos événements</h1>
+				<p>Explorez les meilleurs événements à proximité de chez vous.</p>
+				<div class="search-bar">
+					<form id="search-form" action="pages/search-results.php" method="GET">
+						<div class="search-inputs">
+							<div class="search-input-group">
+								<input
+									type="text"
+									name="query"
+									placeholder="Concert, théâtre, festival..."
+									required
+								/>
+							</div>
+						</div>
+						<button type="submit">Rechercher</button>
+					</form>
+				</div>
+			</div>
+		</section>
 
-    <section class="categories">
-        <h2>Événements</h2>
-        <div class="categories-grid">
-            <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80" alt="Fêtes">
-                <h3>Fêtes</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1507924538820-ede94a04019d?q=80" alt="Théâtre">
-                <h3>Théâtre</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80" alt="Vie Nocturne">
-                <h3>Vie Nocturne</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80" alt="Concerts">
-                <h3>Concerts</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1527224538127-2104bb71c51b?q=80" alt="Comedy Show">
-                <h3>Comedy Show</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?q=80" alt="Loisirs">
-                <h3>Loisirs</h3>
-            </div>
-        </div>
-    </section>
+		<section class="categories">
+			<h2>Événements</h2>
+			<div class="categories-grid">
+				<div class="category-card">
+					<img
+						src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80"
+						alt="Fêtes"
+					/>
+					<h3>Fêtes</h3>
+				</div>
+				<div class="category-card">
+					<img
+						src="https://images.unsplash.com/photo-1507924538820-ede94a04019d?q=80"
+						alt="Théâtre"
+					/>
+					<h3>Théâtre</h3>
+				</div>
+				<div class="category-card">
+					<img
+						src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80"
+						alt="Vie Nocturne"
+					/>
+					<h3>Vie Nocturne</h3>
+				</div>
+				<div class="category-card">
+					<img
+						src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80"
+						alt="Concerts"
+					/>
+					<h3>Concerts</h3>
+				</div>
+				<div class="category-card">
+					<img
+						src="https://images.unsplash.com/photo-1527224538127-2104bb71c51b?q=80"
+						alt="Comedy Show"
+					/>
+					<h3>Comedy Show</h3>
+				</div>
+				<div class="category-card">
+					<img
+						src="https://images.unsplash.com/photo-1511882150382-421056c89033?q=80"
+						alt="Loisirs"
+					/>
+					<h3>Loisirs</h3>
+				</div>
+			</div>
+		</section>
 
-    <section class="organisateur-section">
-        <h2>Organisateurs</h2>
-        <div class="organisateur-grid">
-            <div class="organisateur-card">
-                <h3>Gagnez du temps</h3>
-                <p>en regroupant vos événements en ligne</p>
-            </div>
-            <div class="organisateur-card">
-                <h3>Gardez une trace</h3>
-                <p>de tout vos événements en un seul endroit</p>
-            </div>
-            <div class="organisateur-card">
-                <h3>Développez votre audience</h3>
-                <p>grâce à des liens personnalisés</p>
-            </div>
-        </div>
-        <a href="pages/create.html" class="primary-button">Ajouter un événement</a>
-    </section>
+		<section class="organisateur-section">
+			<h2>Organisateurs</h2>
+			<div class="organisateur-grid">
+				<div class="organisateur-card">
+					<h3>Gagnez du temps</h3>
+					<p>en regroupant vos événements en ligne</p>
+				</div>
+				<div class="organisateur-card">
+					<h3>Gardez une trace</h3>
+					<p>de tout vos événements en un seul endroit</p>
+				</div>
+				<div class="organisateur-card">
+					<h3>Développez votre audience</h3>
+					<p>grâce à des liens personnalisés</p>
+				</div>
+			</div>
+			<a href="pages/create.html" class="primary-button"
+				>Ajouter un événement</a
+			>
+		</section>
 
-    <script src="assets/js/main.js"></script>
+		<script src="assets/js/main.js"></script>
 
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>À propos</h3>
-                <p>EventAccess est votre plateforme de gestion d'événements</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Email: contact@eventaccess.com</p>
-                <p>Tél: +33 1 23 45 67 89</p>
-            </div>
-            <div class="footer-section">
-                <h3>Suivez-nous</h3>
-                <div class="social-links">
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">Instagram</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Mentions légales</h3>
-                <div class="legal-links">
-                    <a href="pages/legal/terms.html">CGU</a>
-                    <a href="pages/legal/cgv.html">CGV</a>
-                    <a href="pages/legal/privacy.html">Politique de confidentialité</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 EventAccess - Tous droits réservés</p>
-        </div>
-    </footer>
-</body>
-</html> 
+		<footer class="site-footer">
+			<div class="footer-content">
+				<div class="footer-section">
+					<h3>À propos</h3>
+					<p>EventAccess est votre plateforme de gestion d'événements</p>
+				</div>
+				<div class="footer-section">
+					<h3>Contact</h3>
+					<p>Email: contact@eventaccess.com</p>
+					<p>Tél: +33 1 23 45 67 89</p>
+				</div>
+				<div class="footer-section">
+					<h3>Suivez-nous</h3>
+					<div class="social-links">
+						<a href="#">Facebook</a>
+						<a href="#">Twitter</a>
+						<a href="#">Instagram</a>
+					</div>
+				</div>
+				<div class="footer-section">
+					<h3>Mentions légales</h3>
+					<div class="legal-links">
+						<a href="pages/legal/terms.html">CGU</a>
+						<a href="pages/legal/cgv.html">CGV</a>
+						<a href="pages/legal/privacy.html">Politique de confidentialité</a>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>&copy; 2024 EventAccess - Tous droits réservés</p>
+			</div>
+		</footer>
+	</body>
+</html>
