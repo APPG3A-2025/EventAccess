@@ -1,19 +1,19 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto; /* Trois colonnes */
-    grid-template-rows: auto auto; /* Deux lignes */
-    gap: 20px; /* Espace entre les éléments */
+    grid-template-columns: auto auto auto; 
+    grid-template-rows: auto auto; 
+    gap: 20px; 
     padding: 10px;
   }
   
   .grid-item {
     padding: 20px;
-    background-color: #f5f5f5; /* Couleur de fond des éléments */
+    background-color: #f5f5f5; 
     border-radius: 8px;
     font-size: 18px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
   }
   
   .grid-item a {
@@ -23,115 +23,236 @@
   }
   
   .grid-item a:hover {
-    color: #A52A44; /* Couleur au survol */
+    color: #A52A44; 
   }
 
 
 
 
-/* Section principale */
+
 .FAQ-CONTACT{
-    padding: 2rem; /* Espacement autour de la section */
-    background-color: #f9f9f9; /* Couleur de fond douce */
+    padding: 2rem; 
+    background-color: #f9f9f9; 
 }
 
-/* Bloc contenant le titre et la grille */
+
 .faq-block {
-    max-width: 8000px; /* Largeur maximale */
-    margin: 0 auto; /* Centrer horizontalement */
-    text-align: center; /* Centrer le contenu */
-    background: #ffffff; /* Couleur de fond */
-    padding: 2rem; /* Espacement interne */
-    border-radius: 8px; /* Bords arrondis */
+    max-width: 8000px; 
+    margin: 0 auto; 
+    text-align: center; 
+    background: #ffffff; 
+    padding: 2rem; 
+    border-radius: 8px; 
     min-height: 600px;
     
 
     
 }
 
-/* Style du titre */
+
+
 .faq-block h2 {
-    font-size: 22; /* Taille du texte */
-    color: #4A2F27; /* Couleur du texte */
-    margin-bottom: 1rem; /* Espacement sous le titre */
+    font-size: 22; 
+    color: #4A2F27; 
+    margin-bottom: 1rem; 
     text-align: left;
 }
 
-/* Ligne de séparation */
+
 .faq-block hr {
-    border: none; /* Supprime le style par défaut */
-    border-top: 2px solid #e0e0e0; /* Ligne fine */
-    margin: 1rem 0; /* Espacement vertical */
+    border: none; 
+    border-top: 2px solid #e0e0e0; 
+    margin: 1rem 0; 
 }
 
-/* Grille FAQ */
+
 .faq-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
-    gap: 3rem; /* Espacement entre les items */
-    margin-top: 1rem; /* Espacement avec la ligne */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 3rem; 
+    margin-top: 1rem; 
     row-gap: 5rem
 
 }
 
-/* Style des liens */
-.faq-grid div a {
-    color: #A52A44; /* Couleur du texte */
-    text-decoration: none; /* Pas de soulignement */
-    font-weight: bold; /* Texte en gras */
-    padding: 1rem; /* Espacement interne */
-    display: block; /* S'assurer que le lien prend tout l'espace */
 
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+.faq-grid div a {
+    color: #A52A44;
+    text-decoration: none; 
+    font-weight: bold; 
+    padding: 1rem; 
+    display: block; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     
 }
 
 .faq-grid div a:hover {
-    background: #e0e0e0; /* Changement de couleur au survol */
-}
-
-/* Grille contact */
-.social-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Trois colonnes égales, une seule ligne */
-    gap: 1rem; /* Espacement entre les éléments */
-    margin-top: 1rem; /* Espacement avec la ligne */
-    justify-items: center; /* Centre les éléments horizontalement */
-    align-items: center; /* Centre les éléments verticalement */
+    background: #e0e0e0; 
 }
 
 
-/* Style des liens dans la grille */
-.social-links a {
-    color: #A52A44; /* Couleur du texte */
-    text-decoration: none; /* Pas de soulignement */
-    font-weight: bold; /* Texte en gras */
-    padding: 1rem; /* Espacement interne */
-    display: flex; /* Flex pour aligner l'icône et le texte */
-    flex-direction: column; /* Texte sous l'icône */
-    align-items: center; /* Centrer les éléments */
-    justify-content: center; /* Centrer les éléments */
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    transition: background 0.3s ease;
-    width: 200px;
+
+
+
+
+
+
+
+
+
+/* Q1
+
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
 }
 
-/* Effet de survol */
-.social-links a:hover {
-    background: #e0e0e0; /* Changement de couleur au survol */
+.header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+   
 }
 
-/* Style des icônes */
-.social-links a img {
-    width: 40px; /* Taille des icônes */
-    height: 40px; /* Taille des icônes */
-    margin-bottom: 10px; /* Espacement entre l'icône et le texte */
-    transition: transform 0.3s ease; /* Animation au survol */
+.header h1 {
+    margin: 0;
 }
 
-/* Effet de zoom sur les icônes au survol */
-.social-links a:hover img {
-    transform: scale(1.2); /* Agrandissement au survol */
+.header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0;
+}
+
+.header nav ul li {
+    margin: 0 15px;
+}
+
+.header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.rep1 {
+    padding: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+   
+   
+}
+
+.info-section h2 {
+    color: #A52A44;
+    margin-bottom: 15px;
+}
+
+.info-section p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.create-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #A52A44;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+    background-color: #A52A44;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 20px;
+}
+
+
+
+/* Q2
+
+/* styles.css */
+
+
+.rep2 {
+    padding: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px,
+}
+
+
+
+/* Q3 */
+
+
+.rep3 {
+    padding: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px,
+}
+
+
+
+/* Q4 */
+
+
+.rep4 {
+    padding: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px,
+}
+
+
+/* Q5 */
+
+
+.rep5 {
+    padding: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px,
+}
+
+
+/* Q6 */
+
+
+.rep6 {
+    padding: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px,
 }
