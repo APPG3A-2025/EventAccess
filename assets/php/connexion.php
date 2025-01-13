@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];        // Stocke l'ID de l'utilisateur
             $_SESSION['user_email'] = $user['email'];  // Stocke l'email de l'utilisateur
             $_SESSION['is_logged_in'] = true;          // Indique que l'utilisateur est connecté
+        
         } else {
             echo "Mot de passe incorrect.";
         }
@@ -47,9 +48,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo "Méthode de requête non autorisée.";
 }
-
-$mot_de_passe = 'Mzerty12345';
-$mot_de_passe_hache = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-echo $mot_de_passe_hache;
 
 ?>
