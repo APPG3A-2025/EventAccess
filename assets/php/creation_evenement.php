@@ -82,11 +82,6 @@ try {
     // Concaténation de la date et de l'heure
     $datetime = $date . ' ' . $time;
 
-    // Debug: afficher la requête
-    error_log("Tentative d'insertion avec les données : " . print_r([
-        $name, $category, $datetime, $city, $postal, $address, $price, $description, $image_path
-    ], true));
-
     // Préparation de la requête
     $req = $bdd->prepare('INSERT INTO evenement (nom, categorie, date, ville, code_postal, adresse, prix, description, image) 
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');

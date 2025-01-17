@@ -99,7 +99,6 @@
 		<div class="menu-overlay"></div>
 
 		<section class="search-results-section">
-			<!-- Reprise de la structure HTML existante -->
 			<div class="search-header">
 				<h1>Résultats de recherche</h1>
 				<div class="search-controls">
