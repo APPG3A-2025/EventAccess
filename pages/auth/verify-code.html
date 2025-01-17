@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventAccess - Vérification du Code</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+    <nav class="vintage-nav">
+        <div class="nav-brand">EventAccess</div>
+        <div class="nav-links">
+            <a href="../../index.html">Découvrir</a>
+            <a href="../../pages/create.html">Organiser</a>
+            <a href="../../pages/list.html">Contact</a>
+        </div>
+        <div class="nav-auth">
+            <a href="../auth/login.html" class="auth-button login">Connexion</a>
+            <a href="../auth/register.html" class="auth-button signup">Inscription</a>
+        </div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="auth-section">
+        <div class="auth-container verify-code-container">
+            <h1>Vérification du Code</h1>
+            <p class="auth-subtitle">Entrez le code que vous avez reçu et choisissez un nouveau mot de passe</p>
+            
+            <form class="auth-form" id="verify-code-form" method="POST" action="verify-code.php">
+                <div class="form-group">
+                    <label for="security-code">Code de Sécurité</label>
+                    <input type="text" id="security-code" required pattern="\d{6}" title="Veuillez entrer un code de 6 chiffres">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Nouveau mot de passe</label>
+                    <input type="password" id="new-password" required minlength="8">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmer le nouveau mot de passe</label>
+                    <input type="password" id="confirm-password" required minlength="8">
+                </div>
+
+                <button type="submit" class="auth-button submit-btn">Changer le mot de passe</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="../../assets/js/auth/verify-code.js"></script>
+</body>
+</html>

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Redirection après 3 secondes
             setTimeout(() => {
-                window.location.href = '../auth/login.html';
+                window.location.href = '../auth/verify-code.html';
             }, 3000);
         });
     }
