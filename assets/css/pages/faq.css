@@ -1,4 +1,3 @@
-
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto; 
@@ -254,5 +253,42 @@ body {
     margin: 0 auto;
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px,
+
+}
+
+
+.faq-form {
+    display: flex;
+    align-items: center; /* Aligne les éléments verticalement */
+    gap: 20px; /* Espacement entre les éléments */
+}
+
+.faq-form label {
+    margin: 0; /* Supprime les marges des labels */
+    flex: 1; /* Permet aux labels de prendre de la place disponible si nécessaire */
+    text-align: left; /* Aligne le texte des labels à gauche */
+}
+
+.faq-form input {
+    width: 100%; /* S'assure que l'input occupe tout l'espace du label */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.faq-form button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #A52A44;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0; /* Empêche le bouton de rétrécir */
+}
+
+.faq-form button:hover {
+    background-color: #c35062;
 }
