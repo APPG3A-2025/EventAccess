@@ -11,22 +11,19 @@
     <?php 
         require_once '../assets/php/connexion.php';
 
-        // Récupération des paramètres
         $recherche = isset($_GET['query']) ? trim($_GET['query']) : '';
         $filtre_date = isset($_GET['date']) ? $_GET['date'] : '';
         $filtre_categories = isset($_GET['categorie']) ? (array)$_GET['categorie'] : [];
 
-        // Liste des catégories prédéfinies
         $categories = ['concert', 'theatre', 'festival', 'sport', 'comedy', 'nightlife'];
 
-       // Liste des villes prédéfinies
        $villes = [
         'Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 
         'Montpellier', 'Strasbourg', 'Bordeaux', 'Lille', 'Rennes',
         'Reims', 'Toulon', 'Grenoble', 'Dijon'
         ];
 
-        // Construction de la requête
+
         $sql = "SELECT * FROM evenement WHERE 1=1";
         $params = [];
 
