@@ -38,7 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];        // Stocke l'ID de l'utilisateur
             $_SESSION['user_email'] = $user['email'];  // Stocke l'email de l'utilisateur
             $_SESSION['is_logged_in'] = true;          // Indique que l'utilisateur est connecté
-        
+            if($user['role'] == 'organisateur'){
+                $_SESSION['role'] = $user['role'];
+                header("Location: page_acceuil_organisateur.html");
+                exit;
+            } else {
+                header("Location: page_accueil_utilisateur.html");
+                exit;
+            }
         } else {
             echo "Mot de passe incorrect.";
         }
