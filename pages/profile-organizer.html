@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil Organisateur - EventAccess</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/pages/profile.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="vintage-nav">
+        <div class="nav-brand">EventAccess</div>
+        <div class="nav-links">
+            <a href="../index.html">Découvrir</a>
+            <a href="create-event.html">Créer un événement</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+        <div class="nav-auth">
+            <!-- Rempli dynamiquement par main.js -->
+        </div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="menu-overlay"></div>
+
+    <section class="profile-section">
+        <div class="profile-container">
+            <h1>Mon Profil Organisateur</h1>
+
+            <!-- Informations personnelles -->
+            <div class="profile-block">
+                <h2>Informations personnelles</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Civilité</label>
+                        <p data-field="civilite"></p>
+                    </div>
+                    <div class="info-item">
+                        <label>Prénom</label>
+                        <p data-field="firstname"></p>
+                    </div>
+                    <div class="info-item">
+                        <label>Nom</label>
+                        <p data-field="lastname"></p>
+                    </div>
+                    <div class="info-item">
+                        <label>Email</label>
+                        <p data-field="email"></p>
+                    </div>
+                    <div class="info-item">
+                        <label>Téléphone</label>
+                        <p data-field="phone"></p>
+                    </div>
+                    <div class="info-item">
+                        <label>Code postal</label>
+                        <p data-field="postal"></p>
+                    </div>
+                </div>
+                <button class="edit-button" data-modal="edit-info">Modifier mes informations</button>
+            </div>
+
+            <!-- Section Organisateur -->
+            <div class="profile-block">
+                <h2>Gestion des Événements</h2>
+                <div class="organizer-actions">
+                    <a href="create-event.html" class="btn btn-primary">Créer un nouvel événement</a>
+                </div>
+                <div class="events-list" id="organizer-events">
+                    <!-- Rempli dynamiquement -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <!-- ... (footer content) ... -->
+    </footer>
+
+    <script type="module" src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/profile-organizer.js"></script>
+</body>
+</html> 

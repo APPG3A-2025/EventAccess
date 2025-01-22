@@ -21,4 +21,16 @@ try {
         'message' => $e->getMessage()
     ]);
 }
+
+function checkUserType($bdd, $token, $requiredType) {
+    if (empty($token)) {
+        return false;
+    }
+
+    $stmt = $bdd->prepare('SELECT type_compte FROM utilisateur WHERE token = ?');
+    $stmt->execute([$token]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $user && $user['type_compte'] === $requiredType;
+}
 ?> 

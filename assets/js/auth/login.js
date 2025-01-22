@@ -137,9 +137,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     localStorage.setItem('userToken', data.token);
                     showNotification('Connexion réussie !', 'success');
                     
-                    setTimeout(() => {
-                        window.location.href = '../profile.html';
-                    }, 1000);
+                    // Redirection selon le type de compte
+                    if (data.user.type_compte === 'organisateur') {
+                        window.location.href = '../profile-organizer.html';
+                    } else {
+                        window.location.href = '../profile-participant.html';
+                    }
                 } else {
                     console.log('Échec de la connexion:', data.message);
                     showNotification(data.message);
