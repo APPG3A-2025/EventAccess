@@ -257,5 +257,61 @@
 
     <script type="module" src="../assets/js/main.js"></script>
     <script type="module" src="../assets/js/profile.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('userToken');
+        if (!token) {
+            window.location.href = '../pages/auth/login.html';
+            return;
+        }
+
+        try {
+            const response = await fetch('../assets/php/check_token.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const data = await response.json();
+            console.log('Données utilisateur:', data);
+
+            if (data.success && data.user) {
+                // Mise à jour des champs avec les données
+                const fields = {
+                    'civilite': data.user.civilite,
+                    'firstname': data.user.prenom,
+                    'lastname': data.user.nom,
+                    'birthdate': data.user.date_naissance,
+                    'phone': data.user.telephone,
+                    'postal': data.user.code_postal,
+                    'email': data.user.email
+                };
+
+                // Mettre à jour chaque champ
+                Object.entries(fields).forEach(([field, value]) => {
+                    const element = document.querySelector(`[data-field="${field}"]`);
+                    if (element) {
+                        element.textContent = value || 'Non renseigné';
+                        if (!value) element.classList.add('not-set');
+                    }
+                });
+
+                // Mettre à jour l'email dans le bloc Email
+                const currentEmail = document.querySelector('.current-email');
+                if (currentEmail) {
+                    currentEmail.textContent = data.user.email;
+                }
+            } else {
+                localStorage.removeItem('userToken');
+                window.location.href = '../pages/auth/login.html';
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+            showNotification('Erreur lors du chargement des données', 'error');
+        }
+    });
+    </script>
 </body>
 </html> 

@@ -1,6 +1,6 @@
 <?php
 try {
-    $bdd = new PDO('mysql:host=localhost;dbname=event_access;charset=utf8', 'root', '');
+    $bdd = new PDO('mysql:host=localhost;dbname=event_access;charset=utf8', 'root', 'root');
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     error_log("Connexion à la base de données réussie");
 } catch(Exception $e) {
