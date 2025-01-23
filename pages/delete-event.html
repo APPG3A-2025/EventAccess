@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Supprimer un événement</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+			.event-list {
+				margin: 20px 0;
+			}
+			.event-item {
+				border: 1px solid #ddd;
+				padding: 10px;
+				margin: 10px 0;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.delete-btn {
+				background-color: #ff4444;
+				color: white;
+				border: none;
+				padding: 5px 10px;
+				cursor: pointer;
+			}
+			.delete-btn:hover {
+				background-color: #cc0000;
+			}
+			.notification {
+				padding: 10px;
+				margin: 10px 0;
+				border-radius: 4px;
+			}
+			.success {
+				background-color: #4caf50;
+				color: white;
+			}
+			.error {
+				background-color: #f44336;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Supprimer un événement</h1>
+		<div id="notification"></div>
+		<div class="event-list" id="eventList">
+			<!-- Les événements seront chargés ici -->
+		</div>
+
+		<script>
+			// Fonction pour charger les événements
+			async function loadEvents() {
+				try {
+					const response = await fetch("../assets/php/get_events.php")
+					const data = await response.json()
+
+					const eventList = document.getElementById("eventList")
+					eventList.innerHTML = data
+						.map(
+							event => `
+                    <div class="event-item">
+                        <div>
+                            <strong>${event.nom}</strong> - ${event.date}
+                            <br>
+                            ${event.ville} - ${event.categorie}
+                        </div>
+                        <button class="delete-btn" onclick="deleteEvent(${event.id})">
+                            Supprimer
+                        </button>
+                    </div>
+                `
+						)
+						.join("")
+				} catch (error) {
+					showNotification("Erreur lors du chargement des événements", false)
+				}
+			}
+
+			// Fonction pour supprimer un événement
+			async function deleteEvent(id) {
+				if (!confirm("Êtes-vous sûr de vouloir supprimer cet événement ?")) {
+					return
+				}
+
+				try {
+					const formData = new FormData()
+					formData.append("id", id)
+
+					const response = await fetch(
+						"../assets/php/suppression_evenement.php",
+						{
+							method: "POST",
+							body: formData,
+						}
+					)
+
+					const data = await response.json()
+
+					if (data.success) {
+						showNotification(data.message, true)
+						loadEvents() // Recharger la liste
+					} else {
+						showNotification(data.message, false)
+					}
+				} catch (error) {
+					showNotification("Erreur lors de la suppression", false)
+				}
+			}
+
+			// Fonction pour afficher les notifications
+			function showNotification(message, isSuccess) {
+				const notification = document.getElementById("notification")
+				notification.className = `notification ${
+					isSuccess ? "success" : "error"
+				}`
+				notification.textContent = message
+
+				// Faire disparaître la notification après 3 secondes
+				setTimeout(() => {
+					notification.textContent = ""
+					notification.className = ""
+				}, 3000)
+			}
+
+			// Charger les événements au chargement de la page
+			document.addEventListener("DOMContentLoaded", loadEvents)
+		</script>
+	</body>
+</html>
