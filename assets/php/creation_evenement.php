@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 header('Content-Type: application/json');
 require_once 'connexion.php';
-
+session_start();
 try {
 
     $date = $_POST['date'];
@@ -78,13 +78,14 @@ try {
     $address = htmlspecialchars($_POST['address']);
     $price = floatval($_POST['price']);
     $description = htmlspecialchars($_POST['description']);
+    $organisateur_id = $_SESSION['user']['id'];
 
     // Concaténation de la date et de l'heure
     $datetime = $date . ' ' . $time;
 
 
-    $req = $bdd->prepare('INSERT INTO evenement (nom, categorie, date, ville, code_postal, adresse, prix, description, image) 
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $req = $bdd->prepare('INSERT INTO evenement (nom, categorie, date, ville, code_postal, adresse, prix, description, image, organisateur_id) 
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
     
 
     $success = $req->execute([
@@ -96,7 +97,8 @@ try {
         $address,
         $price,
         $description,
-        $image_path
+        $image_path,
+        $organisateur_id
     ]);
 
     if(!$success) {
