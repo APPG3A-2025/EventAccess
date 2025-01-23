@@ -79,11 +79,11 @@
 			<div class="nav-brand">EventAccess</div>
 			<div class="nav-links">
 				<a href="../index.html">Découvrir</a>
-				<a href="create.html">Organiser</a>
+				<a href="create.php">Organiser</a>
 				<a href="faq.html">Contact</a>
 			</div>
 			<div class="nav-auth">
-				<a href="auth/login.html" class="auth-button login">Connexion</a>
+				<a href="auth/login.php" class="auth-button login">Connexion</a>
 				<a href="auth/register.html" class="auth-button signup">Inscription</a>
 			</div>
 			<div class="menu-icon">
