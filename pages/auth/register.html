@@ -9,8 +9,8 @@
 
 </head>
 <body>
-    <!-- Ajoutez juste après l'ouverture du body -->
-    <div class="notification" id="notification">
+    <!-- Ajoutez ceci juste après l'ouverture du body -->
+    <div id="notification" class="notification">
         <span class="notification-message"></span>
     </div>
 
@@ -19,11 +19,11 @@
         <div class="nav-brand">EventAccess</div>
         <div class="nav-links">
             <a href="../../index.html">Découvrir</a>
-            <a href="../../pages/create.html">Organiser</a>
+            <a href="../../pages/create.php">Organiser</a>
             <a href="../../pages/faq.html">FAQ</a>
         </div>
         <div class="nav-auth">
-            <a href="../auth/login.html" class="auth-button login">Connexion</a>
+            <a href="../auth/login.php" class="auth-button login">Connexion</a>
             <a href="../auth/register.html" class="auth-button signup active">Inscription</a>
         </div>
         <div class="menu-icon">
@@ -35,7 +35,8 @@
 
     <div class="menu-overlay"></div>
 
-    <section class="auth-section">
+    
+        <form action="../../assets/php/auth/register.php" method="post" class="auth-section">
         <div class="auth-container register-container">
             <h1>Créer un compte</h1>
             
@@ -64,11 +65,11 @@
                             <label>Type de compte</label>
                             <div class="radio-group">
                                 <label class="radio-label">
-                                    <input type="radio" name="account-type" value="participant" required checked>
+                                    <input type="radio" name="account_type" value="utilisateur" required checked>
                                     <span>Participant</span>
                                 </label>
                                 <label class="radio-label">
-                                    <input type="radio" name="account-type" value="organizer" required>
+                                    <input type="radio" name="account_type" value="organisateur" required>
                                     <span>Organisateur</span>
                                 </label>
                             </div>
@@ -79,6 +80,7 @@
                             <input 
                                 type="email" 
                                 id="email" 
+                                name="email"
                                 required 
                                 pattern="[^@\s]+@[^@\s]+\.[^@\s]+" 
                                 title="Veuillez entrer une adresse email valide (exemple@domaine.com)"
@@ -102,17 +104,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="firstname">Prénom</label>
-                                <input type="text" id="firstname" required>
+                                <input type="text" id="firstname" name="firstname" required>
                             </div>
                             <div class="form-group">
                                 <label for="lastname">Nom</label>
-                                <input type="text" id="lastname" required>
+                                <input type="text" id="lastname" name="lastname" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="birthdate">Date de naissance</label>
-                                <input type="date" id="birthdate" required>
+                                <input type="date" id="birthdate" name="birthdate" required>
                             </div>
                             <div class="form-group phone-group">
                                 <label for="phone">Numéro de téléphone</label>
@@ -124,6 +126,7 @@
                                     <input 
                                         type="tel" 
                                         id="phone" 
+                                        name="phone"
                                         maxlength="14" 
                                         placeholder="6 12 34 56 78"
                                         required
@@ -133,7 +136,7 @@
                         </div>
                         <div class="form-group">
                             <label for="postal">Code postal</label>
-                            <input type="text" id="postal" pattern="[0-9]{5}" maxlength="5" placeholder="75001" required>
+                            <input type="text" id="postal" name="postal_code" pattern="[0-9]{5}" maxlength="5" placeholder="75001" required>
                         </div>
                         <div class="button-group">
                             <button type="button" class="prev-step">Retour</button>
@@ -147,7 +150,7 @@
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
                             <div class="password-input">
-                                <input type="password" id="password" required>
+                                <input type="password" id="password" name="password" required>
                                 <button type="button" class="toggle-password">
                                     <i class="far fa-eye"></i>
                                 </button>
@@ -184,7 +187,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </form>
+
 
     <footer class="site-footer">
         <div class="footer-content">
