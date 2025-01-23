@@ -6,20 +6,20 @@ header('Content-Type: application/json');
 require_once 'connexion.php';
 
 try {
-    // Récupération des données du formulaire
+
     $date = $_POST['date'];
     $time = $_POST['time'];
     
-    // Création des objets DateTime
+
     $eventDateTime = new DateTime($date . ' ' . $time);
     $now = new DateTime();
 
-    // Vérification si la date est dans le futur
+
     if ($eventDateTime <= $now) {
         throw new Exception('La date et l\'heure de l\'événement doivent être ultérieures à maintenant');
     }
 
-    // Gestion de l'upload d'image
+
     $image_path = null;
     if(isset($_FILES['image'])) {
         error_log("Image détectée : " . print_r($_FILES['image'], true));
@@ -35,7 +35,7 @@ try {
                 throw new Exception('Format d\'image non autorisé. Formats acceptés : JPG, JPEG, PNG, GIF');
             }
 
-            // Création d'un nom de fichier unique
+
             $new_filename = uniqid() . '.' . $file_ext;
             $upload_dir = '../../uploads/images/';
 
@@ -63,12 +63,12 @@ try {
         }
     }
 
-    // Vérification des champs requis
+
     if(empty($_POST['name']) || empty($_POST['category']) || empty($_POST['date'])) {
         throw new Exception('Veuillez remplir tous les champs obligatoires');
     }
 
-    // Récupération des données du formulaire
+
     $name = htmlspecialchars($_POST['name']);
     $category = htmlspecialchars($_POST['category']);
     $date = $_POST['date'];
@@ -82,16 +82,11 @@ try {
     // Concaténation de la date et de l'heure
     $datetime = $date . ' ' . $time;
 
-    // Debug: afficher la requête
-    error_log("Tentative d'insertion avec les données : " . print_r([
-        $name, $category, $datetime, $city, $postal, $address, $price, $description, $image_path
-    ], true));
 
-    // Préparation de la requête
     $req = $bdd->prepare('INSERT INTO evenement (nom, categorie, date, ville, code_postal, adresse, prix, description, image) 
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
     
-    // Exécution de la requête
+
     $success = $req->execute([
         $name,
         $category,
