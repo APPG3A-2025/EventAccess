@@ -30,150 +30,117 @@ document.addEventListener("DOMContentLoaded", () => {
 		// Force la valeur à ne contenir que des chiffres
 		e.target.value = e.target.value.replace(/\D/g, "").slice(0, 5)
 	})
-
-	// Validation du prix
-	const priceInput = document.getElementById("event-price")
-
-	// Modification du type d'input pour n'accepter que des nombres
-	priceInput.setAttribute("type", "number")
-	priceInput.setAttribute("step", "0.01")
-	priceInput.setAttribute("min", "0")
-
-	priceInput.addEventListener("keypress", e => {
-		// N'autorise que les chiffres et le point
-		if (!/[0-9.]/.test(e.key)) {
-			e.preventDefault()
-		}
-		// Empêche un deuxième point
-		if (e.key === "." && priceInput.value.includes(".")) {
-			e.preventDefault()
-		}
-	})
-
-	priceInput.addEventListener("input", e => {
-		// Ne garde que les chiffres et un seul point
-		let value = e.target.value.replace(/[^\d.]/g, "")
-		const parts = value.split(".")
-		if (parts.length > 2) {
-			value = parts[0] + "." + parts.slice(1).join("")
-		}
-		e.target.value = value
-	})
 })
 
-// Gestion de la soumission du formulaire
-document
-	.getElementById("create-event-form")
-	.addEventListener("submit", function (e) {
-		e.preventDefault()
+document.addEventListener('DOMContentLoaded', async () => {
+	const token = localStorage.getItem('userToken');
+	
+	if (!token) {
+		showNotification('Vous devez être connecté pour créer un événement', 'error');
+		return;
+	}
 
-		// Récupération de la date et heure de l'événement
-		const eventDate = document.getElementById("event-date").value
-		const eventTime = document.getElementById("event-time").value
-		const eventDateTime = new Date(`${eventDate}T${eventTime}`)
-		const now = new Date()
+	const form = document.getElementById('create-event-form');
+	
+	// Validation du prix
+	const priceInput = document.getElementById('prix');
+	if (priceInput) {
+		priceInput.setAttribute('type', 'number');
+		priceInput.setAttribute('step', '0.01');
+		priceInput.setAttribute('min', '0');
 
-		// Vérification si la date est dans le futur
-		if (eventDateTime <= now) {
-			const notification = document.createElement("div")
-			notification.className = "notification error"
-			notification.innerHTML = `
-				<div class="notification-content">
-					<i class="fas fa-exclamation-circle"></i>
-					<span>La date et l'heure de l'événement doivent être ultérieures à maintenant</span>
-				</div>
-			`
-			document.body.appendChild(notification)
-			setTimeout(() => {
-				notification.classList.add("show")
-			}, 100)
-			setTimeout(() => {
-				notification.classList.remove("show")
-				setTimeout(() => {
-					notification.remove()
-				}, 1500)
-			}, 3000)
-			return
-		}
+		priceInput.addEventListener('keypress', e => {
+			// N'autorise que les chiffres et le point
+			if (!/[0-9.]/.test(e.key)) {
+				e.preventDefault();
+			}
+			// Empêche un deuxième point
+			if (e.key === '.' && priceInput.value.includes('.')) {
+				e.preventDefault();
+			}
+		});
 
-		const formData = new FormData(this)
+		priceInput.addEventListener('input', e => {
+			// Ne garde que les chiffres et un seul point
+			let value = e.target.value.replace(/[^\d.]/g, '');
+			const parts = value.split('.');
+			if (parts.length > 2) {
+				value = parts[0] + '.' + parts.slice(1).join('');
+			}
+			e.target.value = value;
+		});
+	}
 
-		fetch("/EventAccess/assets/php/creation_evenement.php", {
-			method: "POST",
-			body: formData,
-		})
-			.then(response => response.json())
-			.then(data => {
+	// Validation du nombre de places
+	const placesInput = document.getElementById('places');
+	if (placesInput) {
+		placesInput.setAttribute('type', 'number');
+		placesInput.setAttribute('min', '1');
+
+		placesInput.addEventListener('keypress', e => {
+			// N'autorise que les chiffres
+			if (!/[0-9]/.test(e.key)) {
+				e.preventDefault();
+			}
+		});
+
+		placesInput.addEventListener('input', e => {
+			// Force la valeur à être un nombre positif
+			let value = parseInt(e.target.value);
+			if (value < 1) {
+				e.target.value = 1;
+			}
+		});
+	}
+
+	// Validation de la date
+	const dateInput = document.getElementById('date');
+	if (dateInput) {
+		// Définir la date minimum à aujourd'hui
+		const today = new Date().toISOString().split('T')[0];
+		dateInput.setAttribute('min', today);
+	}
+
+	if (form) {
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+
+			try {
+				const formData = new FormData(form);
+
+				const response = await fetch('../assets/php/create_event.php', {
+					method: 'POST',
+					headers: {
+						'Authorization': `Bearer ${token}`
+					},
+					body: formData
+				});
+
+				const data = await response.json();
+
 				if (data.success) {
-					// Créer et afficher la notification
-					const notification = document.createElement("div")
-					notification.className = "notification success"
-					notification.innerHTML = `
-                <div class="notification-content">
-                    <i class="fas fa-check-circle"></i>
-                    <span>${data.message}</span>
-                </div>
-            `
-
-					document.body.appendChild(notification)
-
-					// Animation d'entrée
+					showNotification('Événement créé avec succès !', 'success');
 					setTimeout(() => {
-						notification.classList.add("show")
-					}, 100)
-
-					// Supprimer la notification après 3 secondes
-					setTimeout(() => {
-						notification.classList.remove("show")
-						setTimeout(() => {
-							notification.remove()
-						}, 1500)
-					}, 3000)
-
-					// Réinitialiser le formulaire
-					e.target.reset()
+						window.location.href = 'profile-organizer.html';
+					}, 2000);
 				} else {
-					// Gérer l'erreur
-					console.error("Erreur:", data.message)
-					const notification = document.createElement("div")
-					notification.className = "notification error"
-					notification.innerHTML = `
-                <div class="notification-content">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span>${data.message}</span>
-                </div>
-            `
-					document.body.appendChild(notification)
-					setTimeout(() => {
-						notification.classList.add("show")
-					}, 100)
-					setTimeout(() => {
-						notification.classList.remove("show")
-						setTimeout(() => {
-							notification.remove()
-						}, 1500)
-					}, 3000)
+					showNotification(data.message || 'Erreur lors de la création de l\'événement', 'error');
 				}
-			})
-			.catch(error => {
-				console.error("Erreur:", error)
-				const notification = document.createElement("div")
-				notification.className = "notification error"
-				notification.innerHTML = `
-                <div class="notification-content">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span>Une erreur est survenue lors de la création de l'événement</span>
-                </div>
-            `
-				document.body.appendChild(notification)
-				setTimeout(() => {
-					notification.classList.add("show")
-				}, 100)
-				setTimeout(() => {
-					notification.classList.remove("show")
-					setTimeout(() => {
-						notification.remove()
-					}, 1500)
-				}, 3000)
-			})
-	})
+			} catch (error) {
+				console.error('Erreur:', error);
+				showNotification('Erreur lors de la création de l\'événement', 'error');
+			}
+		});
+	}
+});
+
+function showNotification(message, type = 'error') {
+	const notification = document.createElement('div');
+	notification.className = `notification ${type}`;
+	notification.textContent = message;
+	document.body.appendChild(notification);
+	
+	setTimeout(() => {
+		notification.remove();
+	}, 3000);
+}

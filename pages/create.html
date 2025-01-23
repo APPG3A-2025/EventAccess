@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>EventAccess - Créer un événement</title>
+		<title>Créer un Événement - EventAccess</title>
 		<link rel="stylesheet" href="../assets/css/styles.css" />
 		<link rel="stylesheet" href="../assets/css/pages/create.css" />
 	</head>
@@ -12,13 +12,10 @@
 			<div class="nav-brand">EventAccess</div>
 			<div class="nav-links">
 				<a href="../index.html">Découvrir</a>
-				<a href="create.html" class="active">Organiser</a>
 				<a href="faq.html">FAQ</a>
 			</div>
 			<div class="nav-auth">
-				<a href="auth/login.html" class="auth-button login">Connexion</a>
-				<a href="auth/register.html" class="auth-button signup">Inscription</a>
-
+				<!-- Rempli dynamiquement par main.js -->
 			</div>
 			<div class="menu-icon">
 				<span></span>
@@ -31,112 +28,69 @@
 
 		<section class="create-event-section">
 			<div class="container">
-				<h1>Organiser un événement</h1>
-				<form id="create-event-form" class="create-event-form" method="POST">
-					<!-- Informations de base -->
+				<h1>Créer un Événement</h1>
+				
+				<form id="create-event-form" class="event-form">
 					<div class="form-group">
-						<label for="event-name">Nom de l'événement *</label>
-						<input type="text" id="event-name" name="name" required />
+						<label for="titre">Titre de l'événement *</label>
+						<input type="text" id="titre" name="titre" required>
 					</div>
 
 					<div class="form-group">
-						<label for="event-category">Catégorie *</label>
-						<select id="event-category" name="category" required>
+						<label for="description">Description *</label>
+						<textarea id="description" name="description" rows="4" required></textarea>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label for="date">Date *</label>
+							<input type="date" id="date" name="date" required>
+						</div>
+
+						<div class="form-group">
+							<label for="heure">Heure *</label>
+							<input type="time" id="heure" name="heure" required>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label for="lieu">Lieu *</label>
+							<input type="text" id="lieu" name="lieu" required>
+						</div>
+
+						<div class="form-group">
+							<label for="places">Nombre de places *</label>
+							<input type="number" id="places" name="places" min="1" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="categorie">Catégorie *</label>
+						<select id="categorie" name="categorie" required>
 							<option value="">Sélectionnez une catégorie</option>
 							<option value="concert">Concert</option>
 							<option value="theatre">Théâtre</option>
-							<option value="festival">Festival</option>
 							<option value="sport">Sport</option>
-							<option value="comedy">Comedy Show</option>
-							<option value="nightlife">Vie Nocturne</option>
+							<option value="conference">Conférence</option>
+							<option value="autre">Autre</option>
 						</select>
 					</div>
 
-					<!-- Date et heure -->
-					<div class="form-row">
-						<div class="form-group">
-							<label for="event-date">Date *</label>
-							<input
-								type="date"
-								id="event-date"
-								name="date"
-								required
-								min="<?php echo date('Y-m-d'); ?>"
-							/>
-						</div>
-						<div class="form-group">
-							<label for="event-time">Heure *</label>
-							<input type="time" id="event-time" name="time" required />
-						</div>
-					</div>
-
-					<!-- Lieu -->
-					<div class="location-section">
-						<h3>Lieu de l'événement</h3>
-						<div class="form-row">
-							<div class="form-group">
-								<label for="event-city">Ville *</label>
-								<div class="city-search-container">
-									<input
-										type="text"
-										id="event-city"
-										name="city"
-										autocomplete="off"
-										required
-									/>
-									<div id="city-suggestions" class="city-suggestions"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="event-postal">Code postal *</label>
-								<input
-									type="text"
-									id="event-postal"
-									name="postal"
-									pattern="[0-9]{5}"
-									required
-								/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="event-address">Adresse *</label>
-							<input type="text" id="event-address" name="address" required />
-						</div>
-					</div>
-
-					<!-- Prix -->
 					<div class="form-group">
-						<label for="event-price">Prix (€) *</label>
-						<input
-							type="number"
-							id="event-price"
-							name="price"
-							min="0"
-							step="0.01"
-							placeholder="0 pour gratuit"
-							required
-						/>
+						<label for="image">Image de l'événement</label>
+						<input type="file" id="image" name="image" accept="image/*">
 					</div>
 
-					<!-- Description -->
 					<div class="form-group">
-						<label for="event-description">Description *</label>
-						<textarea
-							id="event-description"
-							name="description"
-							rows="5"
-							required
-						></textarea>
+						<label for="prix">Prix (€) *</label>
+						<input type="number" id="prix" name="prix" min="0" step="0.01" required>
 					</div>
 
-					<!-- Images -->
-					<div class="form-group">
-						<label for="event-image">Image</label>
-						<input type="file" id="event-image" name="image" accept="image/*" />
-						<div class="image-preview" id="image-preview"></div>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary">Créer l'événement</button>
+						<button type="button" class="btn btn-secondary" onclick="window.history.back()">Annuler</button>
 					</div>
-
-					<button type="submit" class="submit-button">Créer l'événement</button>
 				</form>
 			</div>
 		</section>
@@ -174,8 +128,7 @@
 			</div>
 		</footer>
 
-		<script src="../assets/js/main.js"></script>
-		<script src="../assets/js/utils/cityAutocomplete.js"></script>
-		<script src="../assets/js/create-event.js"></script>
+		<script type="module" src="../assets/js/main.js"></script>
+		<script type="module" src="../assets/js/create-event.js"></script>
 	</body>
 </html>

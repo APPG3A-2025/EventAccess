@@ -138,11 +138,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                     showNotification('Connexion réussie !', 'success');
                     
                     // Redirection selon le type de compte
-                    if (data.user.type_compte === 'organisateur') {
-                        window.location.href = '../profile-organizer.html';
-                    } else {
-                        window.location.href = '../profile-participant.html';
-                    }
+                    setTimeout(() => {
+                        if (data.user.type_compte === 'organisateur') {
+                            window.location.href = '../profile-organizer.html';
+                        } else {
+                            window.location.href = '../profile-participant.html';
+                        }
+                    }, 1000);
                 } else {
                     console.log('Échec de la connexion:', data.message);
                     showNotification(data.message);

@@ -1,14 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('userToken');
     
-    // Si pas de token, redirection vers login
     if (!token) {
-        window.location.href = '../pages/auth/login.html';
+        showNotification('Vous devez être connecté pour accéder à cette page', 'error');
         return;
     }
 
     try {
-        // Vérifier le token et le type de compte
+        // Vérifier le token
         const response = await fetch('../assets/php/check_token.php', {
             method: 'POST',
             headers: {
@@ -20,13 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = await response.json();
         
         if (!data.success || !data.user) {
-            window.location.href = '../pages/auth/login.html';
-            return;
-        }
-
-        // Vérifier si c'est bien un participant
-        if (data.user.type_compte === 'organisateur') {
-            window.location.href = '../pages/profile-organizer.html';
+            showNotification('Session invalide', 'error');
             return;
         }
 
