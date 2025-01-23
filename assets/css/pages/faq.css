@@ -1,294 +1,251 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto; 
-    grid-template-rows: auto auto; 
-    gap: 20px; 
-    padding: 10px;
-  }
-  
-  .grid-item {
-    padding: 20px;
-    background-color: #f5f5f5; 
-    border-radius: 8px;
-    font-size: 18px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-  }
-  
-  .grid-item a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .grid-item a:hover {
-    color: #A52A44; 
-  }
-
-
-
-
-
-.FAQ-CONTACT{
-    padding: 2rem; 
-    background-color: #f9f9f9; 
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-template-rows: auto auto;
+	gap: 20px;
+	padding: 10px;
 }
 
+.grid-item {
+	padding: 20px;
+	background-color: #f5f5f5;
+	border-radius: 8px;
+	font-size: 18px;
+	text-align: center;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item a {
+	color: #333;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.grid-item a:hover {
+	color: #a52a44;
+}
+
+.FAQ-CONTACT {
+	padding: 2rem;
+	background-color: #f9f9f9;
+}
 
 .faq-block {
-    max-width: 8000px; 
-    margin: 0 auto; 
-    text-align: center; 
-    background: #ffffff; 
-    padding: 2rem; 
-    border-radius: 8px; 
-    min-height: 600px;
-    
-
-    
+	max-width: 8000px;
+	margin: 0 auto;
+	text-align: center;
+	background: #ffffff;
+	padding: 2rem;
+	border-radius: 8px;
+	min-height: 600px;
 }
-
-
 
 .faq-block h2 {
-    font-size: 22; 
-    color: #4A2F27; 
-    margin-bottom: 1rem; 
-    text-align: left;
+	font-size: 22;
+	color: #4a2f27;
+	margin-bottom: 1rem;
+	text-align: left;
 }
-
 
 .faq-block hr {
-    border: none; 
-    border-top: 2px solid #e0e0e0; 
-    margin: 1rem 0; 
+	border: none;
+	border-top: 2px solid #e0e0e0;
+	margin: 1rem 0;
 }
-
 
 .faq-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 3rem; 
-    margin-top: 1rem; 
-    row-gap: 5rem
-
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3rem;
+	margin-top: 1rem;
+	row-gap: 5rem;
 }
 
-
 .faq-grid div a {
-    color: #A52A44;
-    text-decoration: none; 
-    font-weight: bold; 
-    padding: 1rem; 
-    display: block; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    
+	color: #a52a44;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 1rem;
+	display: block;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .faq-grid div a:hover {
-    background: #e0e0e0; 
+	background: #e0e0e0;
 }
-
-
-
-
-
-
-
-
-
-
 
 /* Q1
 
 /* styles.css */
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    background-color: #f9f9f9;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: #333;
+	background-color: #f9f9f9;
 }
 
 .header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-   
+	background-color: #007bff;
+	color: #fff;
+	padding: 15px;
+	text-align: center;
 }
 
 .header h1 {
-    margin: 0;
+	margin: 0;
 }
 
 .header nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    margin: 10px 0 0;
+	list-style: none;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	margin: 10px 0 0;
 }
 
 .header nav ul li {
-    margin: 0 15px;
+	margin: 0 15px;
 }
 
 .header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 .rep1 {
-    padding: 100px;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-   
-   
+	padding: 100px;
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
 }
 
 .info-section h2 {
-    color: #A52A44;
-    margin-bottom: 15px;
+	color: #a52a44;
+	margin-bottom: 15px;
 }
 
 .info-section p {
-    line-height: 1.6;
-    margin-bottom: 20px;
+	line-height: 1.6;
+	margin-bottom: 20px;
 }
 
 .create-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #A52A44;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #a52a44;
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
 }
 
 .create-button:hover {
-    background-color: #A52A44;
+	background-color: #a52a44;
 }
 
 .footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #333;
-    color: #fff;
-    margin-top: 20px;
+	text-align: center;
+	padding: 15px;
+	background-color: #333;
+	color: #fff;
+	margin-top: 20px;
 }
-
-
 
 /* Q2
 
 /* styles.css */
 
-
 .rep2 {
-    padding: 100px;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px,
+	padding: 100px;
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
 }
-
-
 
 /* Q3 */
 
-
 .rep3 {
-    padding: 100px;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px,
+	padding: 100px;
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
 }
-
-
 
 /* Q4 */
 
-
 .rep4 {
-    padding: 100px;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px,
+	padding: 100px;
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
 }
-
 
 /* Q5 */
 
-
 .rep5 {
-    padding: 100px;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px,
+	padding: 100px;
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
 }
-
 
 /* Q6 */
 
-
 .rep6 {
-    padding: 100px;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
+	padding: 100px;
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .faq-form {
-    display: flex;
-    align-items: center; /* Aligne les éléments verticalement */
-    gap: 20px; /* Espacement entre les éléments */
+	display: flex;
+	align-items: center; /* Aligne les éléments verticalement */
+	gap: 20px; /* Espacement entre les éléments */
 }
 
 .faq-form label {
-    margin: 0; /* Supprime les marges des labels */
-    flex: 1; /* Permet aux labels de prendre de la place disponible si nécessaire */
-    text-align: left; /* Aligne le texte des labels à gauche */
+	margin: 0; /* Supprime les marges des labels */
+	flex: 1; /* Permet aux labels de prendre de la place disponible si nécessaire */
+	text-align: left; /* Aligne le texte des labels à gauche */
 }
 
 .faq-form input {
-    width: 100%; /* S'assure que l'input occupe tout l'espace du label */
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+	width: 100%; /* S'assure que l'input occupe tout l'espace du label */
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
 }
 
 .faq-form button {
-    padding: 10px 20px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #A52A44;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    flex-shrink: 0; /* Empêche le bouton de rétrécir */
+	padding: 10px 20px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #a52a44;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	flex-shrink: 0; /* Empêche le bouton de rétrécir */
 }
 
 .faq-form button:hover {
-    background-color: #c35062;
+	background-color: #c35062;
 }
