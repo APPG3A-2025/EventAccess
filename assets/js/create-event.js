@@ -98,7 +98,7 @@ document
 
 		const formData = new FormData(this)
 
-		fetch("/EventAccess/assets/php/creation_evenement.php", {
+		fetch("../php/creation_evenement.php", {
 			method: "POST",
 			body: formData,
 		})

@@ -4,12 +4,12 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>EventAccess - Résultats de recherche</title>
-		<link rel="stylesheet" href="../assets/css/styles.css" />
-		<link rel="stylesheet" href="../assets/css/pages/search-results.css" />
+		<link rel="stylesheet" href="../../assets/css/styles.css" />
+		<link rel="stylesheet" href="../../assets/css/pages/search-results.css" />
 	</head>
 	<body>
     <?php 
-        require_once '../assets/php/connexion.php';
+        require_once './connexion.php';
 
         $recherche = isset($_GET['query']) ? trim($_GET['query']) : '';
         $filtre_date = isset($_GET['date']) ? $_GET['date'] : '';
@@ -78,9 +78,9 @@
 		<nav class="vintage-nav">
 			<div class="nav-brand">EventAccess</div>
 			<div class="nav-links">
-				<a href="../index.html">Découvrir</a>
-				<a href="create.php">Organiser</a>
-				<a href="faq.html">Contact</a>
+				<a href="../../index.html">Découvrir</a>
+				<a href="../../pages/create.php">Organiser</a>
+				<a href="../../pages/faq.html">Contact</a>
 			</div>
 			<div class="nav-auth">
 				<a href="auth/login.php" class="auth-button login">Connexion</a>
@@ -158,9 +158,9 @@
 					<p class="no-results">Aucun résultat trouvé.</p>
 					<?php else: 
                     foreach ($resultats as $event): 
-                        $image_path = !empty($event['image']) && file_exists("../" . $event['image']) 
+                        $image_path = !empty($event['image']) && file_exists("../.../" . $event['image']) 
                             ? "../" . $event['image'] 
-                            : "../assets/images/default-event.jpg";
+                            : "../images/default-event.jpg";
                 ?>
 					<div class="result-card">
 						<img
