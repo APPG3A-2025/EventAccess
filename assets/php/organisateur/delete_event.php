@@ -19,6 +19,16 @@ try {
         throw new Exception('Événement non trouvé ou non autorisé');
     }
 
+    // Commencer une transaction
+    $bdd->beginTransaction();
+
+    // Supprimer d'abord les inscriptions à l'événement
+    $stmt = $bdd->prepare('
+        DELETE FROM participants_evenements 
+        WHERE evenement_id = ?
+    ');
+    $stmt->execute([$_POST['event_id']]);
+
     // Supprimer l'image si elle existe
     if ($event['image']) {
         $image_path = '../../../uploads/images/' . $event['image'];
@@ -34,12 +44,20 @@ try {
     ');
     $stmt->execute([$_POST['event_id'], $_SESSION['user']['id']]);
 
+    // Valider la transaction
+    $bdd->commit();
+
     echo json_encode([
         'success' => true,
         'message' => 'Événement supprimé avec succès'
     ]);
 
 } catch (Exception $e) {
+    // En cas d'erreur, annuler la transaction
+    if ($bdd->inTransaction()) {
+        $bdd->rollBack();
+    }
+    
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage()

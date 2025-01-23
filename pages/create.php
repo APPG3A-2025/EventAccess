@@ -1,10 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {
-	$_SESSION['redirectAfterLogin'] = '../../../pages/create.php';
-	header('Location:./auth/login.php');
-	exit();
-}
+require_once '../assets/php/middleware/check_organisateur.php';
+checkOrganisateur();
 ?>
 <!DOCTYPE html>
 <html lang="fr">

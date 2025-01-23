@@ -15,8 +15,15 @@ try {
     $stmt->execute([$organisateur_id]);
     $nextEvent = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Total des participants (à implémenter avec une table de participants)
-    $totalParticipants = 0; // À modifier selon votre structure
+    // Total des participants pour tous les événements de l'organisateur
+    $stmt = $bdd->prepare('
+        SELECT COUNT(DISTINCT pe.utilisateur_id) 
+        FROM evenement e
+        JOIN participants_evenements pe ON e.id = pe.evenement_id
+        WHERE e.organisateur_id = ?
+    ');
+    $stmt->execute([$organisateur_id]);
+    $totalParticipants = $stmt->fetchColumn();
 
     echo json_encode([
         'success' => true,
