@@ -19,14 +19,9 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'utilisateur') {
     <div class="dashboard-container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="profile-section">
-                <div class="profile-image">
-                    <img src="../../assets/images/default-avatar.png" 
-                         alt="Profile" 
-                         onerror="this.src='../../assets/images/default-profile.png'">
-                </div>
-                <h3><?php echo htmlspecialchars($_SESSION['user']['prenom']); ?></h3>
-                <p>Participant</p>
+            <div class="sidebar-header">
+                <h2>EventAccess</h2>
+                <p>Espace Participant</p>
             </div>
             
             <nav class="sidebar-nav">
@@ -39,10 +34,21 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'utilisateur') {
                 <a href="#search" class="nav-item" data-section="search">
                     <i class="fas fa-search"></i> Rechercher
                 </a>
-                <a href="../../assets/php/auth/logout.php" class="logout">
-                    <i class="fas fa-sign-out-alt"></i> Déconnexion
-                </a>
             </nav>
+
+            <!-- Profil utilisateur -->
+            <div class="user-profile">
+                <div class="user-info">
+                    <div class="user-details">
+                        <p class="user-name"><?php echo htmlspecialchars($_SESSION['user']['prenom']); ?></p>
+                        <p class="user-role">Participant</p>
+                    </div>
+                </div>
+                <a href="../../assets/php/auth/logout.php" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </a>
+            </div>
         </aside>
 
         <!-- Main Content -->
@@ -73,7 +79,10 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'utilisateur') {
 
             <!-- My Events Section -->
             <div id="my-events-section" style="display: none;">
-                <h2>Mes événements</h2>
+                <div class="welcome-section">
+                    <h1>Mes événements</h1>
+                    <p>Retrouvez tous les événements auxquels vous êtes inscrit</p>
+                </div>
                 <div class="events-grid" id="my-events-list">
                     <!-- Chargé dynamiquement -->
                 </div>
@@ -81,25 +90,60 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'utilisateur') {
 
             <!-- Search Section -->
             <div id="search-section" style="display: none;">
-                <h2>Rechercher un événement</h2>
-                <div class="search-filters">
-                    <input type="text" id="search-input" placeholder="Rechercher un événement...">
-                    <select id="category-filter">
-                        <option value="">Toutes les catégories</option>
-                        <option value="concert">Concert</option>
-                        <option value="theatre">Théâtre</option>
-                        <option value="sport">Sport</option>
-                        <option value="comedy">Comedy Show</option>
-                        <option value="festival">Festival</option>
-                    </select>
-                    <input type="date" id="date-filter">
-                    <input type="text" id="city-filter" placeholder="Code postal" pattern="[0-9]{5}" maxlength="5">
-                    <button id="search-button">
-                        <i class="fas fa-search"></i> Rechercher
-                    </button>
+                <div class="welcome-section">
+                    <h1>Rechercher un événement</h1>
+                    <p>Trouvez les événements qui vous intéressent</p>
                 </div>
+                
+                <div class="search-filters">
+                    <form id="search-form">
+                        <div class="filter-group">
+                            <input 
+                                type="text" 
+                                id="search-input" 
+                                placeholder="Rechercher un événement..."
+                                class="search-input"
+                            >
+                        </div>
+                        
+                        <div class="filter-group">
+                            <select id="category-filter" class="filter-select">
+                                <option value="">Toutes les catégories</option>
+                                <option value="concert">Concert</option>
+                                <option value="theatre">Théâtre</option>
+                                <option value="sport">Sport</option>
+                                <option value="festival">Festival</option>
+                                <option value="conference">Conférence</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <input 
+                                type="date" 
+                                id="date-filter" 
+                                class="filter-date"
+                            >
+                        </div>
+                        
+                        <div class="filter-group">
+                            <input 
+                                type="text" 
+                                id="city-filter" 
+                                placeholder="Code postal"
+                                pattern="[0-9]{5}"
+                                maxlength="5"
+                                class="filter-input"
+                            >
+                        </div>
+                        
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i> Rechercher
+                        </button>
+                    </form>
+                </div>
+
                 <div class="events-grid" id="search-results">
-                    <!-- Résultats de recherche -->
+                    <!-- Les résultats seront affichés ici -->
                 </div>
             </div>
         </main>

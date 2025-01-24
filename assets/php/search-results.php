@@ -108,7 +108,7 @@
 										name="query"
 										value="<?php echo htmlspecialchars($recherche); ?>"
 										placeholder="Concert, théâtre, festival..."
-										required
+										
 									/>
 								</div>
 							</div>
@@ -162,32 +162,34 @@
                             ? "../" . $event['image'] 
                             : "../images/default-event.jpg";
                 ?>
-					<div class="result-card">
-						<img
-							src="<?php echo htmlspecialchars($image_path); ?>"
-							alt="<?php echo htmlspecialchars($event['nom']); ?>"
-							class="result-image"
-						/>
-						<div class="result-content">
-							<div class="result-date">
-								<?php echo date('d F Y H:i', strtotime($event['date'])); ?>
-							</div>
-							<h3 class="result-title">
-								<?php echo htmlspecialchars($event['nom']); ?>
-							</h3>
-                            <div class="result-category">
-                                <h3>
-                                <?php echo htmlspecialchars($event['categorie']); ?>
-                                </h3>
-                            </div>
-							<div class="result-location">
-								<?php echo htmlspecialchars($event['ville']); ?>
-							</div>
-							<div class="result-price">
-								<?php echo htmlspecialchars($event['prix']); ?>€
+					<a href="event-details.php?id=<?php echo $event['id']; ?>" style="text-decoration: none; color: inherit;">
+						<div class="result-card">
+							<img
+								src="<?php echo htmlspecialchars($image_path); ?>"
+								alt="<?php echo htmlspecialchars($event['nom']); ?>"
+								class="result-image"
+							/>
+							<div class="result-content">
+								<div class="result-date">
+									<?php echo date('d F Y H:i', strtotime($event['date'])); ?>
+								</div>
+								<h3 class="result-title">
+									<?php echo htmlspecialchars($event['nom']); ?>
+								</h3>
+								<div class="result-category">
+									<h3>
+									<?php echo htmlspecialchars($event['categorie']); ?>
+									</h3>
+								</div>
+								<div class="result-location">
+									<?php echo htmlspecialchars($event['ville']); ?>
+								</div>
+								<div class="result-price">
+									<?php echo htmlspecialchars($event['prix']); ?>€
+								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 					<?php 
                     endforeach;
                 endif; 
@@ -229,7 +231,7 @@
         </div>
     </footer>
 
-    <script src="../assets/js/utils/cityAutocomplete.js"></script>
-    <script src="../assets/js/search.js"></script>
+    <script src="../js/utils/cityAutocomplete.js"></script>
+    <script src="../js/search.js"></script>
 	</body>
 </html>

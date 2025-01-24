@@ -7,11 +7,13 @@ try {
     
     // Récupérer tous les événements auxquels l'utilisateur est inscrit
     $stmt = $bdd->prepare('
-        SELECT e.* 
+        SELECT e.*, u.prenom as organisateur_prenom, u.nom as organisateur_nom,
+        pe.date_inscription, pe.statut,
+        1 as is_registered
         FROM evenement e
         JOIN participants_evenements pe ON e.id = pe.evenement_id
+        LEFT JOIN utilisateur u ON e.organisateur_id = u.id
         WHERE pe.utilisateur_id = ?
-        AND e.date >= NOW()
         ORDER BY e.date ASC
     ');
     $stmt->execute([$user_id]);
