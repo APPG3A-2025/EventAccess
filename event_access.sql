@@ -110,3 +110,25 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- Création de la table administrateurs
+CREATE TABLE IF NOT EXISTS administrateurs (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
+    derniere_connexion DATETIME DEFAULT NULL,
+    UNIQUE KEY unique_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Ajout des index pour optimiser les performances
+ALTER TABLE administrateurs
+ADD INDEX idx_email (email),
+ADD INDEX idx_date_creation (date_creation);
+
+-- Ajout des contraintes de validation
+ALTER TABLE administrateurs
+ADD CONSTRAINT chk_email CHECK (email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
+ADD CONSTRAINT chk_password_length CHECK (LENGTH(mot_de_passe) >= 60);
