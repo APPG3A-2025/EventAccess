@@ -7,7 +7,8 @@ try {
     
     // Récupérer les événements du jour
     $stmt = $bdd->prepare('
-        SELECT e.* 
+        SELECT e.*, 
+               1 as is_registered
         FROM evenement e
         JOIN participants_evenements pe ON e.id = pe.evenement_id
         WHERE pe.utilisateur_id = ?

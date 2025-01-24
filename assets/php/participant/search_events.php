@@ -33,10 +33,8 @@ try {
     }
 
     if (!empty($data['city'])) {
-        // Extraire les 3 premiers chiffres du code postal saisi
-        $postalPrefix = substr($data['city'], 0, 3);
-        $query .= " AND LEFT(e.code_postal, 3) = ?";
-        $params[] = $postalPrefix;
+        $query .= " AND TRIM(e.code_postal) = ?";
+        $params[] = trim($data['city']);
     }
 
     $query .= " ORDER BY e.date ASC";

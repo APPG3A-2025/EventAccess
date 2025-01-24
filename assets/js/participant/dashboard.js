@@ -1,3 +1,14 @@
+function formatDate(dateString) {
+    const options = { 
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit'
+    };
+    return new Date(dateString).toLocaleDateString('fr-FR', options).replace(',', ' à');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Charger les données initiales
     loadRecommendedEvents();
@@ -46,9 +57,17 @@ async function loadRecommendedEvents() {
         const response = await fetch('../../assets/php/participant/get_recommended_events.php');
         const data = await response.json();
         
+        console.log('Réponse recommandations:', data); // Debug
+
         if (data.success) {
             const container = document.getElementById('recommended-events');
-            container.innerHTML = data.events.map(event => createEventCard(event)).join('');
+            if (data.events.length === 0) {
+                container.innerHTML = '<p class="no-events">Aucun événement recommandé pour le moment</p>';
+            } else {
+                container.innerHTML = data.events.map(event => createEventCard(event)).join('');
+            }
+        } else {
+            console.error('Erreur:', data.message);
         }
     } catch (error) {
         console.error('Erreur lors du chargement des événements recommandés:', error);
@@ -62,7 +81,7 @@ async function loadTodayEvents() {
         
         if (data.success) {
             const container = document.getElementById('today-events');
-            container.innerHTML = data.events.map(event => createEventCard(event)).join('');
+            container.innerHTML = data.events.map(event => createEventCard(event, false)).join('');
         }
     } catch (error) {
         console.error('Erreur lors du chargement des événements du jour:', error);
@@ -76,7 +95,7 @@ async function loadMyEvents() {
         
         if (data.success) {
             const container = document.getElementById('my-events-list');
-            container.innerHTML = data.events.map(event => createEventCard(event)).join('');
+            container.innerHTML = data.events.map(event => createEventCard(event, false)).join('');
         }
     } catch (error) {
         console.error('Erreur lors du chargement de mes événements:', error);
@@ -103,10 +122,17 @@ async function performSearch() {
         
         if (data.success) {
             const container = document.getElementById('search-results');
-            container.innerHTML = data.events.map(event => createEventCard(event)).join('');
+            container.innerHTML = data.events.map(event => createEventCard(event, true)).join('');
         }
     } catch (error) {
         console.error('Erreur lors de la recherche:', error);
+    }
+}
+
+function initializeSearch() {
+    const searchButton = document.getElementById('search-button');
+    if (searchButton) {
+        searchButton.addEventListener('click', performSearch);
     }
 }
 
@@ -117,7 +143,7 @@ function createEventCard(event) {
     // Définir l'image par défaut
     const defaultImagePath = '../../assets/images/default-event.jpg';
     const imagePath = event.image 
-        ? `../../uploads/events/${event.image}` 
+        ? `../../uploads/images/${event.image}` 
         : defaultImagePath;
 
     card.innerHTML = `
@@ -138,7 +164,7 @@ function createEventCard(event) {
         </div>
     `;
 
-    return card;
+    return card.outerHTML;
 }
 
 async function toggleRegistration(eventId, button) {

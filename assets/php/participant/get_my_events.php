@@ -7,7 +7,8 @@ try {
     
     // Récupérer tous les événements auxquels l'utilisateur est inscrit
     $stmt = $bdd->prepare('
-        SELECT e.* 
+        SELECT e.*, 
+               1 as is_registered 
         FROM evenement e
         JOIN participants_evenements pe ON e.id = pe.evenement_id
         WHERE pe.utilisateur_id = ?

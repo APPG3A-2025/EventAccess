@@ -6,32 +6,43 @@ try {
     $user_id = $_SESSION['user']['id'];
     
     // Récupérer le code postal de l'utilisateur
-    $stmt = $bdd->prepare('SELECT code_postal FROM utilisateur WHERE id = ?');
+    $stmt = $bdd->prepare('SELECT TRIM(code_postal) as code_postal FROM utilisateur WHERE id = ?');
     $stmt->execute([$user_id]);
     $userPostalCode = $stmt->fetchColumn();
     
-    // Extraire les 3 premiers chiffres du code postal
-    $postalPrefix = substr($userPostalCode, 0, 3);
+    // Debug log
+    error_log("Code postal utilisateur: " . $userPostalCode);
 
-    // Récupérer les événements recommandés
+    // Récupérer les événements recommandés avec debug
     $stmt = $bdd->prepare('
         SELECT e.*, 
                CASE WHEN pe.utilisateur_id IS NOT NULL THEN 1 ELSE 0 END as is_registered
         FROM evenement e
         LEFT JOIN participants_evenements pe ON e.id = pe.evenement_id AND pe.utilisateur_id = ?
-        WHERE LEFT(e.code_postal, 3) = ? 
-        AND e.date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 7 WEEK)
+        WHERE TRIM(e.code_postal) = ? 
+        AND e.date >= NOW() 
+        AND e.date <= DATE_ADD(NOW(), INTERVAL 7 DAY)
         ORDER BY e.date ASC
     ');
-    $stmt->execute([$user_id, $postalPrefix]);
+    $stmt->execute([$user_id, $userPostalCode]);
     $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Debug log
+    error_log("Nombre d'événements trouvés: " . count($events));
+    error_log("Requête SQL: " . $stmt->queryString);
+    error_log("Paramètres: user_id=" . $user_id . ", code_postal=" . $userPostalCode);
 
     echo json_encode([
         'success' => true,
-        'events' => $events
+        'events' => $events,
+        'debug' => [
+            'userPostalCode' => $userPostalCode,
+            'eventCount' => count($events)
+        ]
     ]);
 
 } catch (Exception $e) {
+    error_log("Erreur: " . $e->getMessage());
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage()
