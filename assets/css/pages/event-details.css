@@ -1,0 +1,131 @@
+.event-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.event-header {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.event-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+}
+
+.event-header-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    color: white;
+}
+
+.event-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.event-meta {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.1rem;
+}
+
+.event-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.event-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.event-info {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.event-description, .event-details-info {
+    margin-bottom: 2rem;
+}
+
+.event-details-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.event-details-info li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.event-actions {
+    position: sticky;
+    top: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.btn-primary, .btn-danger {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn-primary {
+    background: #8b1538;
+    color: white;
+}
+
+.btn-danger {
+    background: #8b1538;
+    color: white;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .event-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .event-header {
+        height: 300px;
+    }
+    
+    .event-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+} 
