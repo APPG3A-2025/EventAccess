@@ -62,6 +62,18 @@ CREATE TABLE `utilisateur` (
   `avatar` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+CREATE TABLE participants_evenements (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    evenement_id INT NOT NULL,
+    utilisateur_id INT NOT NULL,
+    date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP,
+    statut ENUM('confirmé', 'annulé') DEFAULT 'confirmé',
+    FOREIGN KEY (evenement_id) REFERENCES evenement(id) ON DELETE CASCADE,
+    FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_participation (evenement_id, utilisateur_id)
+);
+
 --
 -- Index pour les tables déchargées
 --
