@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../connexion.php';
+require_once '../utils/mailer.php';
 
 try {
     if (!isset($_POST['event_id'])) {
@@ -75,6 +76,35 @@ try {
 
     $stmt = $bdd->prepare($sql);
     $stmt->execute($params);
+
+    // Notifier les participants
+    $stmt = $bdd->prepare('
+        SELECT u.email 
+        FROM utilisateur u 
+        JOIN participants_evenements pe ON u.id = pe.utilisateur_id 
+        WHERE pe.evenement_id = ?
+    ');
+    $stmt->execute([$_POST['event_id']]);
+    $participants = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    foreach ($participants as $email) {
+        $htmlContent = "
+            <h2>Modification d'un événement</h2>
+            <p>L'événement {$_POST['nom']} auquel vous êtes inscrit a été modifié.</p>
+            <p>Nouveaux détails :</p>
+            <ul>
+                <li>Date : " . date('d/m/Y H:i', strtotime($_POST['date'] . ' ' . $_POST['time'])) . "</li>
+                <li>Lieu : {$_POST['ville']} ({$_POST['code_postal']})</li>
+                <li>Adresse : {$_POST['adresse']}</li>
+                <li>Prix : {$_POST['prix']}€</li>
+                <li>Catégorie : {$_POST['categorie']}</li>
+                <li>Description : {$_POST['description']}</li>
+            </ul>
+            <p>Si ces modifications ne vous conviennent pas, vous pouvez vous désinscrire de l'événement depuis votre espace personnel.</p>
+        ";
+        
+        sendEventEmail($email, "Modification de l'événement - {$_POST['nom']}", $htmlContent);
+    }
 
     header('Location:../../../pages/organisateur/home_organisateur.php');
 

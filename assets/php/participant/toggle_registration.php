@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../connexion.php';
+require_once '../utils/mailer.php';
 
 try {
     $data = json_decode(file_get_contents('php://input'), true);
@@ -39,6 +40,45 @@ try {
             VALUES (?, ?)
         ');
         $stmt->execute([$user_id, $event_id]);
+        
+        // Récupérer l'email de l'utilisateur et ses informations
+        $stmt = $bdd->prepare('SELECT email, nom, prenom FROM utilisateur WHERE id = ?');
+        $stmt->execute([$user_id]);
+        $user = $stmt->fetch();
+
+        // Récupérer l'email de l'organisateur
+        $stmt = $bdd->prepare('
+            SELECT u.email 
+            FROM utilisateur u 
+            JOIN evenement e ON u.id = e.organisateur_id 
+            WHERE e.id = ?
+        ');
+        $stmt->execute([$event_id]);
+        $organisateurEmail = $stmt->fetchColumn();
+
+        // Email pour le participant
+        $htmlContent = "
+            <h2>Confirmation d'inscription à l'événement</h2>
+            <p>Vous êtes maintenant inscrit à l'événement : {$event['nom']}</p>
+            <p>Date : " . date('d/m/Y H:i', strtotime($event['date'])) . "</p>
+            <p>Lieu : {$event['ville']} ({$event['code_postal']})</p>
+            <p>Adresse : {$event['adresse']}</p>
+            <p>Prix : {$event['prix']}€</p>
+            <p>Description : {$event['description']}</p>
+        ";
+        
+        sendEventEmail($user['email'], "Confirmation d'inscription - {$event['nom']}", $htmlContent);
+
+        // Email pour l'organisateur
+        $htmlContentOrganisateur = "
+            <h2>Nouveau participant à votre événement</h2>
+            <p>Un nouveau participant s'est inscrit à votre événement : {$event['nom']}</p>
+            <p>Participant : {$user['prenom']} {$user['nom']}</p>
+            <p>Email du participant : {$user['email']}</p>
+            <p>Date de l'événement : " . date('d/m/Y H:i', strtotime($event['date'])) . "</p>
+        ";
+
+        sendEventEmail($organisateurEmail, "Nouveau participant - {$event['nom']}", $htmlContentOrganisateur);
         $message = 'Inscription réussie';
     }
 
